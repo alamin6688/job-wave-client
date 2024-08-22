@@ -19,14 +19,8 @@ const Navbar = () => {
       <NavLink to="/" className="p-1 px-2">
         Home
       </NavLink>
-      <NavLink to="/add-job" className="p-1 px-2">
-        Add Job
-      </NavLink>
-      <NavLink to="/my-bids" className="p-1 px-2">
-        My Bids
-      </NavLink>
-      <NavLink to="/sign-in" className="p-1 px-2">
-        Sign In
+      <NavLink to="/all-job" className="p-1 px-2">
+        All Jobs
       </NavLink>
     </>
   );
@@ -41,8 +35,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="shadow-xl z-50 relative">
-      <div className="navbar max-w-screen-2xl mx-auto px-4">
+    <div className="z-50 relative max-w-screen-2xl mx-auto border-b-2 py-2">
+      <div className="navbar px-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -73,13 +67,15 @@ const Navbar = () => {
             to="/"
             className="btn btn-ghost pl-1 gap-0 text-3xl md:text-4xl"
           >
-            Job<span className="text-green-500">Wave</span>
+            <div></div>
+            <span className="pl-1">Job</span>
+            <span className="text-gray-500">Wave</span>
           </NavLink>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal font-bold px-1">{navLinks}</ul>
-        </div>
         <div className="navbar-end gap-0">
+          <div className="navbar-end hidden lg:flex">
+            <ul className="menu menu-horizontal font-bold px-1">{navLinks}</ul>
+          </div>
           <div className="mt-1">
             <label className="swap swap-rotate">
               <input
@@ -112,7 +108,7 @@ const Navbar = () => {
             <div>
               <Link
                 to="/sign-in"
-                className="btn w-full bg-green-500 hover:bg-green-600 text-white border-none hover:font-bold"
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white bg-gray-800 rounded-lg hover:bg-gray-700"
               >
                 Sign In
               </Link>
@@ -141,10 +137,24 @@ const Navbar = () => {
                 </div>
                 <ul className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1000] mt-3 w-44 p-2 space-y-1 shadow font-semibold">
                   <li>
-                    <a>Profile</a>
+                    <NavLink to="/add-job" className="p-1 px-2">
+                      Add Job
+                    </NavLink>
                   </li>
                   <li>
-                    <a>Blogs</a>
+                    <NavLink to="/posted-job" className="p-1 px-2">
+                      My Posted Jobs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/my-bids" className="p-1 px-2">
+                      My Bids
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/bid-requests" className="p-1 px-2">
+                      Bid Requests
+                    </NavLink>
                   </li>
                   <li>
                     {user && (

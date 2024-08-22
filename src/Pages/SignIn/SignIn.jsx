@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin";
+import logo from "../../../public/logo.png";
 
 const SignIn = () => {
   const { signIn } = useAuth();
@@ -35,8 +36,8 @@ const SignIn = () => {
       <Helmet>
         <title>Job Wave | Sign In</title>
       </Helmet>
-      <div className="flex justify-center items-center min-h-[calc(100vh-286px)]">
-        <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-xl  lg:max-w-4xl ">
+      <div className="flex justify-center items-center min-h-[calc(100vh-286px)] p-2 md:px-0">
+        <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-2xl lg:max-w-4xl">
           <div
             className="hidden bg-cover bg-center lg:block lg:w-1/2"
             style={{
@@ -45,15 +46,11 @@ const SignIn = () => {
           ></div>
 
           <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-            <div className="flex justify-center mx-auto">
-              <img
-                className="w-auto h-7 sm:h-8"
-                src="https://merakiui.com/images/logo.svg"
-                alt=""
-              />
+            <div className="flex justify-center items-center gap-1 mx-auto">
+              <img className="w-auto h-10 rounded-md" src={logo} alt="" />
             </div>
 
-            <p className="mt-3 text-xl text-center text-gray-600 ">
+            <p className="mt-3 text-xl text-center text-gray-600">
               Welcome back!
             </p>
 
