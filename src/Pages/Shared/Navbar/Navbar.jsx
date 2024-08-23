@@ -127,6 +127,7 @@ const Navbar = () => {
                     title={user?.displayName || "Guest"}
                   >
                     <img
+                    referrerPolicy="no-referrer"
                       alt="User avatar"
                       src={
                         user?.photoURL ||

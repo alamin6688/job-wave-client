@@ -48,7 +48,7 @@ const SignUp = () => {
         updateUserProfile(name, photoURL);
       })
       .then(() => {
-        toast.success("Signed Up successfully!");
+        toast.success("Sign Up successful!");
         navigate("/");
       })
       .catch((error) => {

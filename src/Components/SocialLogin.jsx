@@ -19,7 +19,7 @@ const SocialLogin = () => {
           userEmail: email,
         };
         console.log(userInfo);
-        toast.success("Signed In successfully!");
+        toast.success("Sign In successful!");
         navigate("/");
       })
       // Handle sign-in error
