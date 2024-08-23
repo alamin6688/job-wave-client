@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/UseAuth";
+import toast from "react-hot-toast";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -12,13 +13,13 @@ const SocialLogin = () => {
 
         // Making user info to post in DB
         const { email, displayName, photoURL } = result.user;
-        const user = {
-          email: email,
-          name: displayName,
+        const userInfo = {
+          userName: displayName,
           photoURL: photoURL,
-          role: "user",
+          userEmail: email,
         };
-        console.log(user);
+        console.log(userInfo);
+        toast.success("Signed In successfully!");
         navigate("/");
       })
       // Handle sign-in error

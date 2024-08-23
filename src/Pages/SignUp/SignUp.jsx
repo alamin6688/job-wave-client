@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../Components/SocialLogin";
 import logo from "../../../public/logo.png";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -47,13 +48,7 @@ const SignUp = () => {
         updateUserProfile(name, photoURL);
       })
       .then(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Signed Up successfully!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success("Signed Up successfully!");
         navigate("/");
       })
       .catch((error) => {

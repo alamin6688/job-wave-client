@@ -1,10 +1,9 @@
-// import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/UseAuth";
-import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin";
 import logo from "../../../public/logo.png";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
   const { signIn } = useAuth();
@@ -20,13 +19,7 @@ const SignIn = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Signed In successfully!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.success("Signed In successfully!");
       navigate(from, { replace: true });
     });
   };
