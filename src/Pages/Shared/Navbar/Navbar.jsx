@@ -4,7 +4,7 @@ import useAuth from "../../../Hooks/UseAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
+  // console.log(user);
   const storedTheme = localStorage.getItem("theme") || "light";
   const [theme, setTheme] = useState(storedTheme);
 

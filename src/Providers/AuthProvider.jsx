@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log("Auth Object:", auth);
+  // console.log("Auth Object:", auth);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("Current User:", currentUser);
+      // console.log("Current User:", currentUser);
       setLoading(false);
     });
 
