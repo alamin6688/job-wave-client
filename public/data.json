@@ -1,0 +1,129 @@
+[
+    {
+      "email": "employer1@example.com",
+      "job_title": "Frontend Developer",
+      "deadline": "2024-09-30",
+      "description": "Looking for a skilled frontend developer with experience in React.js and Tailwind CSS.",
+      "category": "Web Development",
+      "minimum_price": 500,
+      "maximum_price": 1500
+    },
+    {
+      "email": "employer2@example.com",
+      "job_title": "Logo Designer",
+      "deadline": "2024-10-05",
+      "description": "Need a creative graphic designer to create a unique logo for our brand.",
+      "category": "Graphics Design",
+      "minimum_price": 300,
+      "maximum_price": 1000
+    },
+    {
+      "email": "employer3@example.com",
+      "job_title": "Social Media Content Writer",
+      "deadline": "2024-09-25",
+      "description": "Looking for a content writer to create engaging social media posts and articles.",
+      "category": "Digital Marketing",
+      "minimum_price": 200,
+      "maximum_price": 800
+    },
+    {
+      "email": "employer4@example.com",
+      "job_title": "Data Analyst",
+      "deadline": "2024-10-10",
+      "description": "Seeking a data analyst to analyze marketing campaign data and provide actionable insights.",
+      "category": "Data Analyst",
+      "minimum_price": 700,
+      "maximum_price": 2000
+    },
+    {
+      "email": "employer5@example.com",
+      "job_title": "SEO Specialist",
+      "deadline": "2024-09-20",
+      "description": "Looking for an SEO specialist to improve our website's search engine rankings.",
+      "category": "Digital Marketing",
+      "minimum_price": 600,
+      "maximum_price": 1600
+    },
+    {
+      "email": "employer6@example.com",
+      "job_title": "Social Media Manager",
+      "deadline": "2024-09-28",
+      "description": "Seeking a social media manager to enhance our brand presence across various platforms.",
+      "category": "Digital Marketing",
+      "minimum_price": 400,
+      "maximum_price": 1200
+    },
+    {
+      "email": "employer7@example.com",
+      "job_title": "UI/UX Designer",
+      "deadline": "2024-10-01",
+      "description": "Looking for a UI/UX designer to create intuitive user interfaces and enhance user experience.",
+      "category": "UI/UX Design",
+      "minimum_price": 500,
+      "maximum_price": 1400
+    },
+    {
+      "email": "employer8@example.com",
+      "job_title": "Content Writer for Blogs",
+      "deadline": "2024-10-05",
+      "description": "Hiring a content writer to produce high-quality blog content on various topics.",
+      "category": "Content Writer",
+      "minimum_price": 400,
+      "maximum_price": 1000
+    },
+    {
+      "email": "employer9@example.com",
+      "job_title": "Full Stack Developer",
+      "deadline": "2024-10-20",
+      "description": "Looking for a full stack developer with experience in both frontend and backend technologies.",
+      "category": "Web Development",
+      "minimum_price": 800,
+      "maximum_price": 2000
+    },
+    {
+      "email": "employer10@example.com",
+      "job_title": "Website Redesign Specialist",
+      "deadline": "2024-10-15",
+      "description": "Need a specialist to redesign and optimize our existing website for better performance and UX.",
+      "category": "Web Development",
+      "minimum_price": 600,
+      "maximum_price": 1800
+    },
+    {
+      "email": "employer11@example.com",
+      "job_title": "Print Media Designer",
+      "deadline": "2024-10-07",
+      "description": "Hiring a designer for creating print media materials such as brochures and flyers.",
+      "category": "Graphics Design",
+      "minimum_price": 350,
+      "maximum_price": 1100
+    },
+    {
+      "email": "employer12@example.com",
+      "job_title": "Email Marketing Specialist",
+      "deadline": "2024-09-30",
+      "description": "Looking for a specialist to create and manage email marketing campaigns.",
+      "category": "Digital Marketing",
+      "minimum_price": 500,
+      "maximum_price": 1300
+    },
+    {
+      "email": "employer13@example.com",
+      "job_title": "E-commerce Product Copywriter",
+      "deadline": "2024-10-12",
+      "description": "Need a copywriter for creating product descriptions and other content for an e-commerce website.",
+      "category": "Content Writer",
+      "minimum_price": 300,
+      "maximum_price": 900
+    },
+    {
+      "email": "employer14@example.com",
+      "job_title": "UX Researcher",
+      "deadline": "2024-10-18",
+      "description": "Seeking a UX researcher to conduct user research and provide insights to improve our product.",
+      "category": "UI/UX Design",
+      "minimum_price": 600,
+      "maximum_price": 1500
+    }
+  ]
+  
