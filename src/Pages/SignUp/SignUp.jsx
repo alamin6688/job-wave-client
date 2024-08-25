@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/UseAuth";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../Components/SocialLogin";
-import logo from "../../../public/logo.png";
+import logo from "../../assets/logo.png";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
