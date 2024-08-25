@@ -7,15 +7,27 @@ import axios from "axios";
 const TabCategories = () => {
   const [jobs, setJobs] = useState([]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_API_URL}/jobs`)
+  //     .then((res) => {
+  //       setJobs(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching jobs:", error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/jobs`)
-      .then((res) => {
-        setJobs(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching jobs:", error);
-      });
+    const getData = async () => {
+      try {
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
+        setJobs(data);
+      } catch (error) {
+        console.log("Error in fetching!", error);
+      }
+    };
+    getData();
   }, []); // Empty dependency array means this effect runs once on mount
 
   // Utility function to filter jobs based on category
@@ -24,7 +36,7 @@ const TabCategories = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto mt-4 mb-12 pb-8 px-4">
+    <div className="max-w-screen-2xl mx-auto mt-4 mb-8 pb-6 px-4">
       <h1 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
         Browse Jobs By Categories
       </h1>
