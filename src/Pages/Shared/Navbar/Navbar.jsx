@@ -143,7 +143,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/posted-job" className="p-1 px-2">
+                    <NavLink to="/my-posted-jobs" className="p-1 px-2">
                       My Posted Jobs
                     </NavLink>
                   </li>
