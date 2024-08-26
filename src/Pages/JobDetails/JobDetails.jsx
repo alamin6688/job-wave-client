@@ -3,12 +3,15 @@ import { useLoaderData } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../../Hooks/UseAuth";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 const JobDetails = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
   const job = useLoaderData();
   const {
-    // _id,
+    _id,
     job_title,
     description,
     minimum_price,
@@ -16,14 +19,63 @@ const JobDetails = () => {
     category,
     deadline,
     buyer,
+    buyer_email,
   } = job || {};
 
   const handleFormSubmission = async (e) => {
+    if (user?.email === buyer_email) {
+      return toast.error("Action not permitted!");
+    }
     e.preventDefault();
+    const form = e.target;
+    const jobId = _id;
+    const price = parseFloat(form.price.value);
+    // Check if price is not provided
+    if (!price) {
+      return toast.error("Please enter a valid price to place your bid.");
+    }
+    // Validation for price within range
+    if (
+      price < parseFloat(minimum_price) ||
+      price > parseFloat(maximum_price)
+    ) {
+      return toast.error(
+        `Price must be within the range of ${minimum_price} to ${maximum_price}.`
+      );
+    }
+    const comment = form.comment.value;
+    const deadline = startDate;
+    const email = user?.email;
+    const status = "Pending";
+
+    const bidData = {
+      jobId,
+      price,
+      deadline,
+      comment,
+      job_title,
+      category,
+      email,
+      buyer_email,
+      status,
+    };
+    console.log(bidData);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/bid`,
+        bidData
+      );
+      console.log(data);
+      if (data.insertedId) {
+        toast.success("Bid Placed Successfully!");
+      }
+    } catch (error) {
+      console.log("Bid Placement Failed!", error, error.message);
+    }
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-around gap-4  items-center min-h-[calc(100vh-305px)] max-w-screen-2xl mx-auto p-4">
+    <div className="flex flex-col md:flex-row justify-around gap-4  items-center min-h-[calc(100vh-304px)] max-w-screen-2xl mx-auto p-4">
       {/* Job Details */}
       <div className="w-full flex-1 p-4 py-6 bg-white rounded-md shadow-xl md:min-h-[350px]">
         <div className="flex items-center justify-between">
@@ -107,8 +159,11 @@ const JobDetails = () => {
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
-            <div className="flex flex-col gap-2 ">
-              <label className="text-gray-700">Deadline</label>
+            <div className="flex flex-col gap-2">
+              <label className="text-gray-700">
+                Deadline
+                <span className="text-xs">(MM/DD/YYYY)</span>
+              </label>
 
               {/* Date Picker Input Field */}
               <DatePicker
@@ -124,7 +179,7 @@ const JobDetails = () => {
               type="submit"
               className="w-full px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
             >
-              Place Bid
+              Place A Bid
             </button>
           </div>
         </form>
