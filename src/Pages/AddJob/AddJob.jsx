@@ -1,17 +1,51 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
 import useAuth from "../../Hooks/UseAuth";
 import { useState } from "react";
 
 const AddJob = () => {
   const { user } = useAuth();
-
+  const navigate = useNavigate();
 
   const [startDate, setStartDate] = useState(new Date());
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+    const form = e.target;
+    const job_title = form.job_title.value;
+    const email = form.email.value;
+    const deadline = startDate;
+    const category = form.category.value;
+    const minimum_price = parseFloat(form.min_price.value);
+    const maximum_price = parseFloat(form.max_price.value);
+    const description = form.description.value;
+    const jobData = {
+      job_title,
+      deadline,
+      category,
+      minimum_price,
+      maximum_price,
+      description,
+      buyer: {
+        email,
+        name: user?.displayName,
+        photo: user?.photoURL,
+      },
+    };
+    console.log(jobData);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/job`,
+        jobData
+      );
+      console.log(data);
+      toast.success("Job Data Updated Successfully!");
+      navigate("/my-posted-jobs");
+    } catch (err) {
+      console.log(err, err.message);
+    }
   };
   return (
     <div className="max-w-screen-2xl mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] mt-4 md:mt-10 mb-12">

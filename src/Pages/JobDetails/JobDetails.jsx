@@ -19,14 +19,12 @@ const JobDetails = () => {
     category,
     deadline,
     buyer,
-    buyer_email,
   } = job || {};
 
   const handleFormSubmission = async (e) => {
-    if (user?.email === buyer_email) {
-      return toast.error("Action not permitted!");
-    }
     e.preventDefault();
+    if (user?.email === buyer?.email)
+      return toast.error("Action not permitted!");
     const form = e.target;
     const jobId = _id;
     const price = parseFloat(form.price.value);
@@ -56,7 +54,7 @@ const JobDetails = () => {
       job_title,
       category,
       email,
-      buyer_email,
+      buyer,
       status,
     };
     console.log(bidData);
@@ -79,7 +77,7 @@ const JobDetails = () => {
       {/* Job Details */}
       <div className="w-full flex-1 p-4 py-6 bg-white rounded-md shadow-xl md:min-h-[350px]">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-extrabold text-gray-800 ">
+          <span className="text-xs font-bold text-gray-700 ">
             Deadline: {new Date(deadline).toLocaleDateString()}
           </span>
           <span className="px-4 py-1 font-semibold pt-1 text-blue-800 uppercase bg-blue-200 rounded-full">
@@ -93,10 +91,10 @@ const JobDetails = () => {
           </h1>
 
           <p className="mt-2 text-lg text-gray-600 ">{description}</p>
-          <p className="mt-6 text-sm font-bold text-gray-600 ">
+          <p className="mt-6 text-lg font-bold text-gray-600 ">
             Buyer Details:
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center justify-between gap-5">
             <div>
               <p className="mt-2 text-sm  text-gray-600 ">
                 Name: {buyer?.name}
@@ -105,7 +103,7 @@ const JobDetails = () => {
                 Email: {buyer?.email}
               </p>
             </div>
-            <div className="rounded-full object-cover overflow-hidden w-14 h-14">
+            <div className="rounded-xl object-cover overflow-hidden w-14 h-14">
               <img src={buyer?.photo} alt="" />
             </div>
           </div>
@@ -119,7 +117,7 @@ const JobDetails = () => {
         <h2 className="text-2xl font-semibold text-gray-700 capitalize ">
           Place A Bid
         </h2>
-
+        <hr className="mt-2" />
         <form onSubmit={handleFormSubmission}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
