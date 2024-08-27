@@ -2,20 +2,38 @@ import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/UseAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const MyPostedJobs = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`
-      );
-      setJobs(data);
-    };
     getData();
   }, [user]);
+
+  const getData = async () => {
+    const { data } = await axios(
+      `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`
+    );
+    setJobs(data);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/job/${id}`
+      );
+      console.log(data);
+      toast.success("Delete Successful!");
+
+      //refresh ui
+      getData();
+    } catch (err) {
+      console.log(err.message);
+      toast.error(err.message);
+    }
+  };
 
   return (
     <section className="min-h-[calc(100vh-305px)] max-w-screen-2xl mx-auto px-4 py-12">
@@ -128,7 +146,7 @@ const MyPostedJobs = () => {
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
                           <button
-                            // onClick={() => handleDelete(job._id)}
+                            onClick={() => handleDelete(job._id)}
                             className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
                           >
                             <svg
