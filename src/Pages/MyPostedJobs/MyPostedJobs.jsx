@@ -27,7 +27,7 @@ const MyPostedJobs = () => {
       console.log(data);
       toast.success("Delete Successful!");
 
-      //refresh ui
+      // Refresh UI
       getData();
     } catch (err) {
       console.log(err.message);
@@ -120,18 +120,17 @@ const MyPostedJobs = () => {
                               "text-emerald-500 bg-emerald-100/60"
                             } ${
                               job.category === "Digital Marketing" &&
-                              "text-yellow-500 bg-pink-100/60"
+                              "text-yellow-500 bg-yellow-100/60"
                             } ${
                               job.category === "Data Analyst" &&
-                              "text-cyan-500 bg-blue-100/60"
-                            }${
+                              "text-cyan-500 bg-cyan-100/60"
+                            } ${
                               job.category === "Content Writer" &&
-                              "text-gray-500 bg-blue-100/60"
-                            }${
+                              "text-orange-500 bg-orange-100/60"
+                            } ${
                               job.category === "UI/UX Design" &&
-                              "text-sky-500 bg-blue-100/60"
-                            }
-                            text-xs  rounded-full`}
+                              "text-teal-500 bg-teal-100/60"
+                            } text-xs rounded-full`}
                           >
                             {job.category}
                           </p>
