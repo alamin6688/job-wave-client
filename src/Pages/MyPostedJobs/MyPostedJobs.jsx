@@ -7,14 +7,22 @@ const MyPostedJobs = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
 
-
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`
+      );
+      setJobs(data);
+    };
+    getData();
+  }, [user]);
 
   return (
-    <section className="min-h-[calc(100vh-305px)] max-w-screen-2xl mx-auto px-4 lg:px-0 pt-12">
+    <section className="min-h-[calc(100vh-305px)] max-w-screen-2xl mx-auto px-4 py-12">
       <div className="flex items-center gap-x-3">
         <h2 className="text-xl font-bold text-gray-700 ">My Posted Jobs</h2>
 
-        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
+        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
           {jobs.length} Job
         </span>
       </div>
@@ -28,7 +36,7 @@ const MyPostedJobs = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Title</span>
@@ -37,14 +45,14 @@ const MyPostedJobs = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       <span>Deadline</span>
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       <button className="flex items-center gap-x-2">
                         <span>Price Range</span>
@@ -53,18 +61,18 @@ const MyPostedJobs = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       Category
                     </th>
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       Description
                     </th>
 
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                       Edit
                     </th>
                   </tr>
@@ -81,7 +89,7 @@ const MyPostedJobs = () => {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        ${job.min_price}-${job.max_price}
+                        ${job.minimum_price} - ${job.maximum_price}
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-2">
@@ -94,8 +102,18 @@ const MyPostedJobs = () => {
                               "text-emerald-500 bg-emerald-100/60"
                             } ${
                               job.category === "Digital Marketing" &&
-                              "text-pink-500 bg-pink-100/60"
-                            } text-xs  rounded-full`}
+                              "text-yellow-500 bg-pink-100/60"
+                            } ${
+                              job.category === "Data Analyst" &&
+                              "text-cyan-500 bg-blue-100/60"
+                            }${
+                              job.category === "Content Writer" &&
+                              "text-gray-500 bg-blue-100/60"
+                            }${
+                              job.category === "UI/UX Design" &&
+                              "text-sky-500 bg-blue-100/60"
+                            }
+                            text-xs  rounded-full`}
                           >
                             {job.category}
                           </p>
