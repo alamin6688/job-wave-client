@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRoute from "../Providers/PrivateRoute";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -29,11 +30,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-job",
-        element: <AddJob></AddJob>,
+        element: <PrivateRoute><AddJob></AddJob></PrivateRoute>,
       },
       {
         path: "/my-posted-jobs",
-        element: <MyPostedJobs></MyPostedJobs>,
+        element: <PrivateRoute><MyPostedJobs></MyPostedJobs></PrivateRoute>,
       },
       {
         path: '/update/:id',
