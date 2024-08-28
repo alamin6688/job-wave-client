@@ -58,12 +58,12 @@ const UpdateJob = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <section className=" p-2 md:p-6 mx-auto bg-white rounded-md shadow-md ">
-        <h2 className="text-lg font-semibold text-gray-700 capitalize ">
+    <div className="max-w-screen-2xl mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] mt-4 md:mt-10 mb-12">
+      <section className="w-full md:w-3/4 lg:w-1/2 p-4 pb-6 md:p-6 mx-auto bg-white rounded-md shadow-xl">
+        <h2 className="text-center text-2xl font-extrabold text-gray-700 capitalize">
           Update a Job
         </h2>
-
+        <hr className="mt-2" />
         <form onSubmit={handleFormSubmit}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
@@ -96,7 +96,7 @@ const UpdateJob = () => {
               <label className="text-gray-700">Deadline</label>
 
               <DatePicker
-                className="border p-2 rounded-md"
+                className="border w-full p-2 rounded-md"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />

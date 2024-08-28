@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/UseAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyPostedJobs = () => {
   const { user } = useAuth();
@@ -20,23 +21,39 @@ const MyPostedJobs = () => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/job/${id}`
-      );
-      console.log(data);
-      toast.success("Delete Successful!");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axios.delete(
+            `${import.meta.env.VITE_API_URL}/job/${id}`
+          );
+          console.log(data);
 
-      // Refresh UI
-      getData();
-    } catch (err) {
-      console.log(err.message);
-      toast.error(err.message);
-    }
+          // Display success toast
+          toast.success("Delete Successful!");
+
+          // Refresh UI
+          getData();
+        } catch (err) {
+          console.log(err.message);
+          toast.error(err.message);
+        }
+      } else {
+        toast.info("Delete canceled.");
+      }
+    });
   };
 
   return (
-    <section className="min-h-[calc(100vh-305px)] max-w-screen-2xl mx-auto px-4 py-12">
+    <section className="min-h-[calc(100vh-304px)] max-w-screen-2xl mx-auto px-4 py-12">
       <div className="flex items-center gap-x-3">
         <h2 className="text-xl font-bold text-gray-700 ">My Posted Jobs</h2>
 
@@ -52,6 +69,14 @@ const MyPostedJobs = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
+                    <th
+                      scope="col"
+                      className="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-gray-500"
+                    >
+                      <div className="flex items-center gap-x-3">
+                        <span>No.</span>
+                      </div>
+                    </th>
                     <th
                       scope="col"
                       className="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-gray-500"
@@ -96,8 +121,11 @@ const MyPostedJobs = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
-                  {jobs.map((job) => (
+                  {jobs.map((job, idx) => (
                     <tr key={job._id}>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {idx + 1}
+                      </td>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                         {job.job_title}
                       </td>
@@ -146,7 +174,7 @@ const MyPostedJobs = () => {
                         <div className="flex items-center gap-x-6">
                           <button
                             onClick={() => handleDelete(job._id)}
-                            className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
+                            className="btn text-red-500 transition-colors duration-200   hover:text-red-700 focus:outline-none"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +194,7 @@ const MyPostedJobs = () => {
 
                           <Link
                             to={`/update/${job._id}`}
-                            className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
+                            className="btn text-blue-500 transition-colors duration-200  hover:text-blue-700 focus:outline-none"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
