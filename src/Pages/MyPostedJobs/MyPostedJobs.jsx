@@ -60,7 +60,7 @@ const MyPostedJobs = () => {
       </Helmet>
       <section className="min-h-[calc(100vh-304px)] max-w-screen-2xl mx-auto px-4 py-12">
         <div className="flex items-center gap-x-3">
-          <h2 className="text-xl font-bold text-gray-700 ">My Posted Jobs</h2>
+          <h2 className="text-xl font-bold text-gray-700">My Posted Jobs</h2>
 
           <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
             {jobs.length} Job
