@@ -73,7 +73,7 @@ const JobDetails = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-around gap-4  items-center min-h-[calc(100vh-305px)] max-w-screen-2xl mx-auto p-4">
+    <div className="flex flex-col md:flex-row justify-around gap-4  items-center min-h-[calc(100vh-304px)] max-w-screen-2xl mx-auto p-4">
       {/* Job Details */}
       <div className="w-full flex-1 p-4 py-6 bg-white rounded-md shadow-xl md:min-h-[350px]">
         <div className="flex items-center justify-between">

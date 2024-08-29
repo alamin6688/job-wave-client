@@ -1,10 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/UseAuth";
 import toast from "react-hot-toast";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get the intended route or default to home
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -20,18 +24,21 @@ const SocialLogin = () => {
         };
         console.log(userInfo);
         toast.success("Sign In successful!");
-        navigate("/");
+
+        // Navigate to the intended route after successful sign-in
+        navigate(from, { replace: true });
       })
       // Handle sign-in error
       .catch((error) => {
         console.error("Google Sign-In Error:", error);
+        toast.error("Sign In failed. Please try again.");
       });
   };
 
   return (
     <div
       onClick={handleGoogleSignIn}
-      className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
+      className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50"
     >
       <div className="py-2">
         <svg className="w-6 h-6" viewBox="0 0 40 40">

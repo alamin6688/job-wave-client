@@ -19,7 +19,7 @@ const Navbar = () => {
       <NavLink to="/" className="p-1 px-2">
         Home
       </NavLink>
-      <NavLink to="/all-job" className="p-1 px-2">
+      <NavLink to="/all-jobs" className="p-1 px-2">
         All Jobs
       </NavLink>
     </>
