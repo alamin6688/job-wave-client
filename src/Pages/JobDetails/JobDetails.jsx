@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../../Hooks/UseAuth";
@@ -7,8 +7,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const JobDetails = () => {
-  const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
+  const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate();
   const job = useLoaderData();
   const {
     _id,
@@ -54,8 +55,9 @@ const JobDetails = () => {
       job_title,
       category,
       email,
-      buyer,
+      buyer_email: buyer?.email,
       status,
+      buyer,
     };
     console.log(bidData);
     try {
@@ -66,6 +68,7 @@ const JobDetails = () => {
       console.log(data);
       if (data.insertedId) {
         toast.success("Bid Placed Successfully!");
+        navigate("/my-bids");
       }
     } catch (error) {
       console.log("Bid Placement Failed!", error, error.message);
