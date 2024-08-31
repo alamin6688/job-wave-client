@@ -17,6 +17,20 @@ const BidRequests = () => {
     );
     setBids(data);
   };
+
+  // Handle Status
+  const handleStatus = async (id, prevStatus, status) => {
+    if (prevStatus === status)
+      return console.log("Action not permitted! Already In Progress.");
+    console.log(id, prevStatus, status);
+    const { data } = await axios.patch(
+      `${import.meta.env.VITE_API_URL}/bid/${id}`,
+      { status }
+    );
+    console.log(data);
+    getData();
+  };
+
   return (
     <>
       <Helmet>
@@ -180,9 +194,11 @@ const BidRequests = () => {
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
                             <button
-                              disabled={bid.status !== "In Progress"}
-                              // onClick={() => handleStatus(bid._id, "Complete")}
-                              className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
+                              onClick={() =>
+                                handleStatus(bid._id, bid.status, "In Progress")
+                              }
+                              disabled={bid.status === "Complete"}
+                              className="btn text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -200,7 +216,7 @@ const BidRequests = () => {
                               </svg>
                             </button>
 
-                            <button className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none">
+                            <button className="btn text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
