@@ -199,15 +199,15 @@ const BidRequests = () => {
                                 handleStatus(bid._id, bid.status, "In Progress")
                               }
                               disabled={bid.status === "Complete"}
-                              className="btn text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
+                              className="btn text-gray-500 transition-colors duration-200   hover:bg-green-600 bg-green-500 focus:outline-none border-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                strokeWidth="1.5"
+                                strokeWidth="3.0"
                                 stroke="currentColor"
-                                className="w-5 h-5"
+                                className="w-6 h-6 text-white"
                               >
                                 <path
                                   strokeLinecap="round"
@@ -222,15 +222,15 @@ const BidRequests = () => {
                                 handleStatus(bid._id, bid.status, "Rejected")
                               }
                               disabled={bid.status === "Complete"}
-                              className="btn text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
+                              className="btn transition-colors duration-200 hover:bg-red-600 *:focus:outline-none bg-red-500 border-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                strokeWidth="1.5"
+                                strokeWidth="3.0"
                                 stroke="currentColor"
-                                className="w-5 h-5"
+                                className="w-6 h-6 text-white"
                               >
                                 <path
                                   strokeLinecap="round"

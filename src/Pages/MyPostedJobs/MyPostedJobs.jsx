@@ -177,9 +177,10 @@ const MyPostedJobs = () => {
                         </td>
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
+                            {/* Delete Button */}
                             <button
                               onClick={() => handleDelete(job._id)}
-                              className="btn text-red-500 transition-colors duration-200   hover:text-red-700 focus:outline-none"
+                              className="btn border-none text-white hover:bg-red-600 bg-red-500 transition-colors duration-200   hover:text-red-700 focus:outline-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -196,10 +197,10 @@ const MyPostedJobs = () => {
                                 />
                               </svg>
                             </button>
-
+                            {/* Update */}
                             <Link
                               to={`/update/${job._id}`}
-                              className="btn text-blue-500 transition-colors duration-200  hover:text-blue-700 focus:outline-none"
+                              className="btn border-none text-white hover:bg-blue-600 bg-blue-500 transition-colors duration-200  hover:text-blue-700 focus:outline-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
