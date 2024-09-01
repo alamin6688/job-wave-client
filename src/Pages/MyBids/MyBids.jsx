@@ -18,6 +18,16 @@ const MyBids = () => {
     setBids(data);
   };
 
+  // Handle Status
+  const handleStatus = async (id, status) => {
+    const { data } = await axios.patch(
+      `${import.meta.env.VITE_API_URL}/bid/${id}`,
+      { status }
+    );
+    console.log(data);
+    getData();
+  };
+
   return (
     <>
       <Helmet>
@@ -170,9 +180,9 @@ const MyBids = () => {
                           {/* Complete Button */}
                           <button
                             disabled={bid.status !== "In Progress"}
-                            // onClick={() => handleStatus(bid._id, "Complete")}
+                            onClick={() => handleStatus(bid._id, "Complete")}
                             title="Mark Complete"
-                            className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed"
+                            className="btn text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

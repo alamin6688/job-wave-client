@@ -193,6 +193,7 @@ const BidRequests = () => {
                         </td>
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
+                            {/* Accept Button */}
                             <button
                               onClick={() =>
                                 handleStatus(bid._id, bid.status, "In Progress")
@@ -215,8 +216,14 @@ const BidRequests = () => {
                                 />
                               </svg>
                             </button>
-
-                            <button className="btn text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none">
+                            {/* Rejected Button */}
+                            <button
+                              onClick={() =>
+                                handleStatus(bid._id, bid.status, "Rejected")
+                              }
+                              disabled={bid.status === "Complete"}
+                              className="btn text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
