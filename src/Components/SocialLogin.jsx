@@ -13,7 +13,7 @@ const SocialLogin = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log("Google Sign-In Result:", result);
+        console.log("Google Sign In Result:", result);
 
         // Making user info to post in DB
         const { email, displayName, photoURL } = result.user;
