@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../Components/SocialLogin";
 import logo from "../../assets/logo.png";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -16,7 +17,7 @@ const SignUp = () => {
     return regex.test(password);
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -35,31 +36,39 @@ const SignUp = () => {
       return;
     }
 
-    const userInfo = {
-      userName: name,
-      photoURL: photoURL,
-      userEmail: email,
-      password: password,
-    };
-    console.log(userInfo);
+    try {
+      // User Sign Up
+      const result = await createUser(email, password);
+      console.log(result.user);
 
-    createUser(email, password)
-      .then(() => {
-        updateUserProfile(name, photoURL);
-      })
-      .then(() => {
-        toast.success("Sign Up successful!");
-        navigate("/");
-      })
-      .catch((error) => {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Sign Up failed!",
-          text: error.message,
-          showConfirmButton: true,
-        });
+      // Update User Profile
+      await updateUserProfile(name, photoURL);
+
+      // Fetch JWT Token
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
+
+      // Show Toast
+      toast.success("Sign Up successful!");
+
+      // Navigate To The Intended Route After Successful Sign-Up
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Sign Up failed!",
+        text: error.message,
+        showConfirmButton: true,
       });
+    }
   };
 
   return (

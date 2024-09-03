@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/UseAuth";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -10,29 +11,37 @@ const SocialLogin = () => {
   // Get the intended route or default to home
   const from = location.state?.from?.pathname || "/";
 
-  const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        console.log("Google Sign In Result:", result);
+  const handleGoogleSignIn = async () => {
+    try {
+      // 1. Google sign-in from Firebase
+      const result = await googleSignIn();
+      console.log("Google Sign In Result:", result.user);
 
-        // Making user info to post in DB
-        const { email, displayName, photoURL } = result.user;
-        const userInfo = {
-          userName: displayName,
-          photoURL: photoURL,
-          userEmail: email,
-        };
-        console.log(userInfo);
-        toast.success("Sign In successful!");
+      // 2. Making user info to post in DB
+      const { email, displayName, photoURL } = result.user;
+      const userInfo = {
+        userName: displayName,
+        photoURL: photoURL,
+        userEmail: email,
+      };
+      console.log(userInfo);
 
-        // Navigate to the intended route after successful sign-in
-        navigate(from, { replace: true });
-      })
-      // Handle sign-in error
-      .catch((error) => {
-        console.error("Google Sign-In Error:", error);
-        toast.error("Sign In failed. Please try again.");
-      });
+      // 3. Get token from server using email
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        { email: result?.user?.email },
+        { withCredentials: true } // Ensure credentials are included
+      );
+      console.log("Token Data:", data);
+
+      toast.success("Sign In successful!");
+
+      // 4. Navigate to the intended route after successful sign-in
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error("Google Sign-In Error:", err);
+      toast.error("Sign In failed. Please try again.");
+    }
   };
 
   return (

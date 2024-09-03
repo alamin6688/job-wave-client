@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/UseAuth";
 import SocialLogin from "../../Components/SocialLogin";
 import logo from "../../assets/logo.png";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const SignIn = () => {
   const { signIn } = useAuth();
@@ -11,17 +12,31 @@ const SignIn = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
     const email = form.email.value;
-    const password = form.password.value;
-    signIn(email, password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      toast.success("Sign In successful!");
+    const pass = form.password.value;
+
+    try {
+      // User Login
+      const result = await signIn(email, pass);
+
+      // Get JWT Token And Set It As Cookie
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        { email: result?.user?.email },
+        { withCredentials: true } // Ensure this is set to handle cookies
+      );
+      console.log(data);
+
+      // Navigate To The Intended Route
       navigate(from, { replace: true });
-    });
+      toast.success("Sign In Successful");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message || "Sign In Failed");
+    }
   };
 
   return (

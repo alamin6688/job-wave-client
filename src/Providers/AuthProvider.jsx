@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
 import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -37,8 +38,12 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
+    const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
+      withCredentials: true,
+    });
+    console.log(data);
     return signOut(auth);
   };
 
