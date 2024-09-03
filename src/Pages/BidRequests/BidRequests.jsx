@@ -12,10 +12,15 @@ const BidRequests = () => {
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_API_URL}/bid-requests/${user?.email}`
-    );
-    setBids(data);
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/bid-requests/${user?.email}`,
+        { withCredentials: true }
+      );
+      setBids(data);
+    } catch (error) {
+      console.error("Error fetching bid requests:", error);
+    }
   };
 
   // Handle Status
