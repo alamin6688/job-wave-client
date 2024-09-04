@@ -26,7 +26,7 @@ const SocialLogin = () => {
       };
       console.log(userInfo);
 
-      // 3. Get token from server using email
+      // 3. Get Token From Server Using Email
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/jwt`,
         { email: result?.user?.email },
