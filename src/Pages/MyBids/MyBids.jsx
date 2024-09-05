@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/UseAuth";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyBids = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [bids, setBids] = useState([]);
 
@@ -12,19 +13,13 @@ const MyBids = () => {
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_API_URL}/my-bids/${user?.email}`,
-      { withCredentials: true }
-    );
+    const { data } = await axiosSecure(`/my-bids/${user?.email}`);
     setBids(data);
   };
 
   // Handle Status
   const handleStatus = async (id, status) => {
-    const { data } = await axios.patch(
-      `${import.meta.env.VITE_API_URL}/bid/${id}`,
-      { status }
-    );
+    const { data } = await axiosSecure.patch(`/bid/${id}`, { status });
     console.log(data);
     getData();
   };

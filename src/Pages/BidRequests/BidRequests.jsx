@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/UseAuth";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const BidRequests = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [bids, setBids] = useState([]);
 
@@ -13,10 +14,7 @@ const BidRequests = () => {
 
   const getData = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/bid-requests/${user?.email}`,
-        { withCredentials: true }
-      );
+      const { data } = await axiosSecure.get(`/bid-requests/${user?.email}`);
       setBids(data);
     } catch (error) {
       console.error("Error fetching bid requests:", error);
@@ -28,10 +26,7 @@ const BidRequests = () => {
     if (prevStatus === status)
       return console.log("Action not permitted! Already In Progress.");
     console.log(id, prevStatus, status);
-    const { data } = await axios.patch(
-      `${import.meta.env.VITE_API_URL}/bid/${id}`,
-      { status }
-    );
+    const { data } = await axiosSecure.patch(`/bid/${id}`, { status });
     console.log(data);
     getData();
   };

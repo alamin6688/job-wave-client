@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import useAuth from "../../Hooks/UseAuth";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/UseAuth";
 
 const MyPostedJobs = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
 
@@ -15,10 +16,7 @@ const MyPostedJobs = () => {
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_API_URL}/jobs/${user?.email}`,
-      { withCredentials: true }
-    );
+    const { data } = await axiosSecure(`/jobs/${user?.email}`);
     setJobs(data);
   };
 
@@ -34,12 +32,10 @@ const MyPostedJobs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const { data } = await axios.delete(
-            `${import.meta.env.VITE_API_URL}/job/${id}`
-          );
+          const { data } = await axiosSecure.delete(`/job/${id}`);
           console.log(data);
 
-          // Display success toast
+          // Display Success Toast
           toast.success("Delete Successful!");
 
           // Refresh UI
