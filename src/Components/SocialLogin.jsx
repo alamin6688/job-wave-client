@@ -13,11 +13,11 @@ const SocialLogin = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      // 1. Google sign-in from Firebase
+      // 1. Google Sign-In From Firebase
       const result = await googleSignIn();
       console.log("Google Sign In Result:", result.user);
 
-      // 2. Making user info to post in DB
+      // 2. Making User Info To Post In DB
       const { email, displayName, photoURL } = result.user;
       const userInfo = {
         userName: displayName,
@@ -36,7 +36,7 @@ const SocialLogin = () => {
 
       toast.success("Sign In successful!");
 
-      // 4. Navigate to the intended route after successful sign-in
+      // 4. Navigate To The Intended Route After Successful Sign-In
       navigate(from, { replace: true });
     } catch (err) {
       console.error("Google Sign-In Error:", err);
