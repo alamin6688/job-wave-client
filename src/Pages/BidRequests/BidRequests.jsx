@@ -1,35 +1,67 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/UseAuth";
-import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const BidRequests = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const [bids, setBids] = useState([]);
+  // const queryClient = useQueryClient();
 
-  useEffect(() => {
-    getData();
-  }, [user]);
+  const {
+    data: bids = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryFn: () => getData(),
+    queryKey: ["bids", user?.email],
+  });
 
   const getData = async () => {
     try {
       const { data } = await axiosSecure.get(`/bid-requests/${user?.email}`);
-      setBids(data);
+      return data;
     } catch (error) {
       console.error("Error fetching bid requests:", error);
     }
   };
 
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ id, status }) => {
+      const { data } = await axiosSecure.patch(`/bid/${id}`, { status });
+      console.log(data);
+      return data;
+    },
+    onSuccess: () => {
+      console.log("Updated!");
+      toast.success("Data Updated Successfully!");
+
+      // Refresh UI For latest Data
+      refetch();
+
+      // Refetch Er Kothin Niom Jate All Web a Data Refech Hoi
+      // queryClient.invalidateQueries({ queryKey: ["bids"] });
+    },
+  });
+
   // Handle Status
   const handleStatus = async (id, prevStatus, status) => {
     if (prevStatus === status)
       return console.log("Action not permitted! Already In Progress.");
-    console.log(id, prevStatus, status);
-    const { data } = await axiosSecure.patch(`/bid/${id}`, { status });
-    console.log(data);
-    getData();
+
+    await mutateAsync({ id, status });
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-[calc(100vh-304px)] flex items-center justify-center">
+        <div>
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
