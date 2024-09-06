@@ -1,129 +1,240 @@
 [
-    {
-      "email": "employer1@example.com",
-      "job_title": "Frontend Developer",
-      "deadline": "2024-09-30",
-      "description": "Looking for a skilled frontend developer with experience in React.js and Tailwind CSS.",
-      "category": "Web Development",
-      "minimum_price": 500,
-      "maximum_price": 1500
-    },
-    {
-      "email": "employer2@example.com",
-      "job_title": "Logo Designer",
-      "deadline": "2024-10-05",
-      "description": "Need a creative graphic designer to create a unique logo for our brand.",
-      "category": "Graphics Design",
-      "minimum_price": 300,
-      "maximum_price": 1000
-    },
-    {
-      "email": "employer3@example.com",
-      "job_title": "Social Media Content Writer",
-      "deadline": "2024-09-25",
-      "description": "Looking for a content writer to create engaging social media posts and articles.",
-      "category": "Digital Marketing",
-      "minimum_price": 200,
-      "maximum_price": 800
-    },
-    {
-      "email": "employer4@example.com",
-      "job_title": "Data Analyst",
-      "deadline": "2024-10-10",
-      "description": "Seeking a data analyst to analyze marketing campaign data and provide actionable insights.",
-      "category": "Data Analyst",
-      "minimum_price": 700,
-      "maximum_price": 2000
-    },
-    {
-      "email": "employer5@example.com",
-      "job_title": "SEO Specialist",
-      "deadline": "2024-09-20",
-      "description": "Looking for an SEO specialist to improve our website's search engine rankings.",
-      "category": "Digital Marketing",
-      "minimum_price": 600,
-      "maximum_price": 1600
-    },
-    {
-      "email": "employer6@example.com",
-      "job_title": "Social Media Manager",
-      "deadline": "2024-09-28",
-      "description": "Seeking a social media manager to enhance our brand presence across various platforms.",
-      "category": "Digital Marketing",
-      "minimum_price": 400,
-      "maximum_price": 1200
-    },
-    {
-      "email": "employer7@example.com",
-      "job_title": "UI/UX Designer",
-      "deadline": "2024-10-01",
-      "description": "Looking for a UI/UX designer to create intuitive user interfaces and enhance user experience.",
-      "category": "UI/UX Design",
-      "minimum_price": 500,
-      "maximum_price": 1400
-    },
-    {
-      "email": "employer8@example.com",
-      "job_title": "Content Writer for Blogs",
-      "deadline": "2024-10-05",
-      "description": "Hiring a content writer to produce high-quality blog content on various topics.",
-      "category": "Content Writer",
-      "minimum_price": 400,
-      "maximum_price": 1000
-    },
-    {
-      "email": "employer9@example.com",
-      "job_title": "Full Stack Developer",
-      "deadline": "2024-10-20",
-      "description": "Looking for a full stack developer with experience in both frontend and backend technologies.",
-      "category": "Web Development",
-      "minimum_price": 800,
-      "maximum_price": 2000
-    },
-    {
-      "email": "employer10@example.com",
-      "job_title": "Website Redesign Specialist",
-      "deadline": "2024-10-15",
-      "description": "Need a specialist to redesign and optimize our existing website for better performance and UX.",
-      "category": "Web Development",
-      "minimum_price": 600,
-      "maximum_price": 1800
-    },
-    {
-      "email": "employer11@example.com",
-      "job_title": "Print Media Designer",
-      "deadline": "2024-10-07",
-      "description": "Hiring a designer for creating print media materials such as brochures and flyers.",
-      "category": "Graphics Design",
-      "minimum_price": 350,
-      "maximum_price": 1100
-    },
-    {
-      "email": "employer12@example.com",
-      "job_title": "Email Marketing Specialist",
-      "deadline": "2024-09-30",
-      "description": "Looking for a specialist to create and manage email marketing campaigns.",
-      "category": "Digital Marketing",
-      "minimum_price": 500,
-      "maximum_price": 1300
-    },
-    {
-      "email": "employer13@example.com",
-      "job_title": "E-commerce Product Copywriter",
-      "deadline": "2024-10-12",
-      "description": "Need a copywriter for creating product descriptions and other content for an e-commerce website.",
-      "category": "Content Writer",
-      "minimum_price": 300,
-      "maximum_price": 900
-    },
-    {
-      "email": "employer14@example.com",
-      "job_title": "UX Researcher",
-      "deadline": "2024-10-18",
-      "description": "Seeking a UX researcher to conduct user research and provide insights to improve our product.",
-      "category": "UI/UX Design",
-      "minimum_price": 600,
-      "maximum_price": 1500
+  {
+    "job_title": "Frontend Developer",
+    "deadline": "2024-09-20T17:18:03.000Z",
+    "category": "Web Development",
+    "minimum_price": 400,
+    "maximum_price": 900,
+    "description": "Looking for a skilled frontend developer with experience in React.js and Tailwind CSS.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
     }
-  ]
-  
+  },
+  {
+    "job_title": "Full Stack Developer",
+    "deadline": "2024-09-30T12:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 500,
+    "maximum_price": 1000,
+    "description": "Seeking a full stack developer with expertise in both frontend and backend technologies, including Node.js, Express, React, and MongoDB.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Backend Developer",
+    "deadline": "2024-10-05T09:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 450,
+    "maximum_price": 950,
+    "description": "Looking for an experienced Backend Developer to manage server-side logic, build APIs, and work with databases to ensure efficient data processing.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "React.js Developer",
+    "deadline": "2024-10-10T15:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 450,
+    "maximum_price": 900,
+    "description": "Seeking a React.js developer to build responsive and high-performance web applications. Experience with Redux is a plus.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "WordPress Developer",
+    "deadline": "2024-10-15T11:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 300,
+    "maximum_price": 700,
+    "description": "Looking for a WordPress developer to create custom themes and plugins, and to enhance existing websites.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Node.js Developer",
+    "deadline": "2024-10-20T18:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 400,
+    "maximum_price": 850,
+    "description": "Seeking a Node.js developer with experience in building scalable server-side applications and APIs.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "PHP Developer",
+    "deadline": "2024-10-25T14:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 350,
+    "maximum_price": 800,
+    "description": "Looking for an experienced PHP Developer to build and maintain web applications, work with various PHP frameworks, and ensure robust and secure server-side logic.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Python Developer",
+    "deadline": "2024-10-30T16:00:00.000Z",
+    "category": "Web Development",
+    "minimum_price": 400,
+    "maximum_price": 850,
+    "description": "Seeking a Python Developer to work on web applications, develop server-side logic, and integrate with various APIs and databases using Python frameworks like Django or Flask.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Book Cover Designer",
+    "deadline": "2024-09-20T17:18:03.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 300,
+    "maximum_price": 700,
+    "description": "Looking for a creative Book Cover Designer to design visually appealing covers for various genres, ensuring they capture the essence of the book and attract readers.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Logo Designer",
+    "deadline": "2024-09-25T14:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 400,
+    "maximum_price": 800,
+    "description": "Seeking a skilled Logo Designer to create unique and memorable logos that effectively represent brand identity and resonate with target audiences.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Business Card Designer",
+    "deadline": "2024-10-01T12:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 350,
+    "maximum_price": 750,
+    "description": "Looking for a Business Card Designer to create professional and impactful business cards that leave a lasting impression and reflect your brand's identity.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Social Media Graphics Designer",
+    "deadline": "2024-10-05T10:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 400,
+    "maximum_price": 700,
+    "description": "Seeking a Social Media Graphics Designer to create engaging and visually striking graphics for social media platforms, including posts, banners, and ads.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Infographic Designer",
+    "deadline": "2024-10-10T16:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 350,
+    "maximum_price": 700,
+    "description": "Looking for an Infographic Designer to create visually compelling infographics that effectively communicate complex data and information.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Print Media Designer",
+    "deadline": "2024-10-15T11:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 300,
+    "maximum_price": 650,
+    "description": "Seeking a Print Media Designer to create designs for various print materials including brochures, flyers, posters, and banners.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Editorial Designer",
+    "deadline": "2024-10-20T09:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 350,
+    "maximum_price": 700,
+    "description": "Looking for an Editorial Designer to design layouts and visual elements for magazines, newspapers, and other print publications.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Packaging Designer",
+    "deadline": "2024-10-25T14:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 300,
+    "maximum_price": 650,
+    "description": "Seeking a Packaging Designer to create innovative and attractive packaging designs that enhance product appeal and ensure brand consistency.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  },
+  {
+    "job_title": "Event Poster Designer",
+    "deadline": "2024-10-30T16:00:00.000Z",
+    "category": "Graphics Design",
+    "minimum_price": 350,
+    "maximum_price": 700,
+    "description": "Looking for an Event Poster Designer to create eye-catching posters for various events including concerts, conferences, and community gatherings.",
+    "email": "alamin.kzs06@gmail.com",
+    "buyer": {
+      "email": "alamin.kzs06@gmail.com",
+      "name": "Fuade Hasan Alamin",
+      "photo": "https://lh3.googleusercontent.com/a/ACg8ocJNzXYzxBKvMhtSF-6bbKnA8deUVeDU5h2_YR1Jy0f4JvrrhFyH=s96-c"
+    }
+  }
+]

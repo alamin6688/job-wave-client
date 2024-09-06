@@ -117,7 +117,7 @@ const JobDetails = () => {
       </div>
       {/* Place A Bid Form */}
       <section className="p-4 py-6 w-full bg-white rounded-md shadow-xl flex-1 md:min-h-[350px]">
-        <h2 className="text-2xl font-semibold text-gray-700 capitalize ">
+        <h2 className="text-2xl font-semibold text-gray-700 capitalize">
           Place A Bid
         </h2>
         <hr className="mt-2" />
