@@ -3,11 +3,12 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../../Hooks/UseAuth";
-import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const JobDetails = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const job = useLoaderData();
@@ -61,17 +62,16 @@ const JobDetails = () => {
     };
     console.log(bidData);
     try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/bid`,
-        bidData
-      );
+      const { data } = await axiosSecure.post(`/bid`, bidData);
       console.log(data);
       if (data.insertedId) {
         toast.success("Bid Placed Successfully!");
         navigate("/my-bids");
       }
     } catch (error) {
-      console.log("Bid Placement Failed!", error, error.message);
+      toast.error("Bid Already Placed!");
+      console.log("error.response.data", error);
+      e.target.reset();
     }
   };
 
@@ -132,6 +132,7 @@ const JobDetails = () => {
                 type="text"
                 name="price"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                required
               />
             </div>
 
