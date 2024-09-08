@@ -4,20 +4,52 @@ import { Helmet } from "react-helmet-async";
 import JobCards from "../Home/TabCategories/JobCards";
 
 const AllJobs = () => {
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [count, setCount] = useState(0);
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
+        const { data } = await axios(
+          `${
+            import.meta.env.VITE_API_URL
+          }/all-jobs?page=${currentPage}&size=${itemsPerPage}`
+        );
         setJobs(data);
       } catch (error) {
         console.log("Error in fetching!", error);
       }
     };
     getData();
+  }, [currentPage, itemsPerPage]);
+
+  // Pagination Page Count Data Count
+  useEffect(() => {
+    const getCount = async () => {
+      try {
+        const { data } = await axios(
+          `${import.meta.env.VITE_API_URL}/all-jobs-count`
+        );
+        setCount(data.count);
+      } catch (error) {
+        console.log("Error in data length count!", error);
+      }
+    };
+    getCount();
   }, []);
-  const pages = [1, 2, 3];
+
+  // Pagination Page Count
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
+
+  //  hHndle Pagination Button
+  const handlePaginationButton = (value) => {
+    console.log(value);
+    setCurrentPage(value);
+  };
+
   return (
     <>
       <Helmet>
@@ -72,16 +104,21 @@ const AllJobs = () => {
               Reset
             </button>
           </div>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8 lg:mt-16">
             {jobs.map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
           </div>
         </div>
+
         {/* Pagination Section */}
         <div className="flex justify-center mt-12">
           {/* Previous Button */}
-          <button className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => handlePaginationButton(currentPage - 1)}
+            className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white"
+          >
             <div className="flex items-center -mx-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,15 +141,22 @@ const AllJobs = () => {
           {/* Numbers */}
           {pages.map((btnNum) => (
             <button
+              onClick={() => handlePaginationButton(btnNum)}
               key={btnNum}
-              className={`hidden px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
+              className={`hidden ${
+                currentPage === btnNum ? "bg-blue-500 text-white" : ""
+              } px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
             >
               {btnNum}
             </button>
           ))}
 
           {/* Next Button */}
-          <button className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500">
+          <button
+            disabled={currentPage === numberOfPages}
+            onClick={() => handlePaginationButton(currentPage + 1)}
+            className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+          >
             <div className="flex items-center -mx-1">
               <span className="mx-1">Next</span>
 
