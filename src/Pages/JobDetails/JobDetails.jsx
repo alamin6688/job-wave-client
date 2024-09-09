@@ -81,7 +81,7 @@ const JobDetails = () => {
       <div className="w-full flex-1 p-4 py-6 bg-white rounded-md shadow-xl md:min-h-[350px]">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold text-gray-700 ">
-            Deadline: {new Date(deadline).toLocaleDateString()}
+            Deadline: {new Date(deadline).toLocaleDateString("en-GB")}
           </span>
           <span className="px-4 py-1 font-semibold pt-1 text-blue-800 uppercase bg-blue-200 rounded-full">
             {category}
@@ -164,7 +164,7 @@ const JobDetails = () => {
             <div className="flex flex-col gap-2">
               <label className="text-gray-700">
                 Deadline
-                <span className="text-xs">(MM/DD/YYYY)</span>
+                <span className="text-xs">(DD/MM/YYYY)</span>
               </label>
 
               {/* Date Picker Input Field */}
@@ -172,6 +172,7 @@ const JobDetails = () => {
                 className="border p-2 rounded-md w-full"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
+                dateFormat="dd/MM/yyyy"
               />
             </div>
           </div>
