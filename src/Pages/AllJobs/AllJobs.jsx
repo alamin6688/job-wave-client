@@ -4,10 +4,11 @@ import { Helmet } from "react-helmet-async";
 import JobCards from "../Home/TabCategories/JobCards";
 
 const AllJobs = () => {
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("");
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const AllJobs = () => {
         const { data } = await axios(
           `${
             import.meta.env.VITE_API_URL
-          }/all-jobs?page=${currentPage}&size=${itemsPerPage}&filter=${filter}`
+          }/all-jobs?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}`
         );
         setJobs(data);
       } catch (error) {
@@ -24,7 +25,7 @@ const AllJobs = () => {
       }
     };
     getData();
-  }, [currentPage, filter, itemsPerPage]);
+  }, [currentPage, filter, itemsPerPage, sort]);
 
   // Pagination Page Count Data Count
   useEffect(() => {
@@ -49,6 +50,13 @@ const AllJobs = () => {
   const handlePaginationButton = (value) => {
     console.log(value);
     setCurrentPage(value);
+  };
+
+  const handleReset = () => {
+    setFilter("");
+    setSort("");
+    // setSearch('')
+    // setSearchText('')
   };
 
   return (
@@ -97,8 +105,13 @@ const AllJobs = () => {
             </form>
             <div>
               <select
-                name="category"
-                id="category"
+                onChange={(e) => {
+                  setSort(e.target.value);
+                  setCurrentPage(1);
+                }}
+                value={sort}
+                name="sort"
+                id="sort"
                 className="border p-4 rounded-md"
               >
                 <option value="">Sort By Deadline</option>
@@ -106,7 +119,9 @@ const AllJobs = () => {
                 <option value="asc">Ascending Order</option>
               </select>
             </div>
-            <button className="btn text-[16px] leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+            <button 
+            onClick={handleReset}
+            className="btn text-[16px] leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
               Reset
             </button>
           </div>
