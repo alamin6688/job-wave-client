@@ -9,6 +9,8 @@ const AllJobs = () => {
   const [count, setCount] = useState(0);
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
+  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const AllJobs = () => {
         const { data } = await axios(
           `${
             import.meta.env.VITE_API_URL
-          }/all-jobs?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}`
+          }/all-jobs?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
         );
         setJobs(data);
       } catch (error) {
@@ -25,14 +27,16 @@ const AllJobs = () => {
       }
     };
     getData();
-  }, [currentPage, filter, itemsPerPage, sort]);
+  }, [currentPage, filter, itemsPerPage, search, sort]);
 
   // Pagination Page Count Data Count
   useEffect(() => {
     const getCount = async () => {
       try {
         const { data } = await axios(
-          `${import.meta.env.VITE_API_URL}/all-jobs-count?&filter=${filter}`
+          `${
+            import.meta.env.VITE_API_URL
+          }/all-jobs-count?&filter=${filter}&search=${search}`
         );
         setCount(data.count);
       } catch (error) {
@@ -40,24 +44,32 @@ const AllJobs = () => {
       }
     };
     getCount();
-  }, [filter]);
+  }, [filter, search]);
 
   // Pagination Page Count
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
-  //  hHndle Pagination Button
+  //  Handle Pagination Button
   const handlePaginationButton = (value) => {
     console.log(value);
     setCurrentPage(value);
   };
 
+  // Handle Reset
   const handleReset = () => {
     setFilter("");
     setSort("");
-    // setSearch('')
-    // setSearchText('')
+    setSearch("");
+    setSearchText("");
   };
+
+  // Handle Search
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(searchText);
+  };
+  console.log(searchText);
 
   return (
     <>
@@ -88,11 +100,13 @@ const AllJobs = () => {
               </select>
             </div>
 
-            <form>
+            <form onSubmit={handleSearch}>
               <div className="flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
                 <input
                   className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                   type="text"
+                  onChange={(e) => setSearchText(e.target.value)}
+                  value={searchText}
                   name="search"
                   placeholder="Enter Job Title"
                   aria-label="Enter Job Title"
@@ -119,9 +133,10 @@ const AllJobs = () => {
                 <option value="asc">Ascending Order</option>
               </select>
             </div>
-            <button 
-            onClick={handleReset}
-            className="btn text-[16px] leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+            <button
+              onClick={handleReset}
+              className="btn text-[16px] leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            >
               Reset
             </button>
           </div>
