@@ -80,18 +80,38 @@ const JobDetails = () => {
       {/* Job Details */}
       <div className="w-full flex-1 p-4 py-6 bg-white rounded-md shadow-xl md:min-h-[350px]">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-gray-700 ">
+          <span className="text-xs font-bold text-gray-700">
             Deadline: {new Date(deadline).toLocaleDateString("en-GB")}
           </span>
-          <span className="px-4 py-1 font-semibold pt-1 text-blue-800 uppercase bg-blue-200 rounded-full">
-            {category}
+          <span className="text-[8px] uppercase rounded-full font-semibold">
+            <p
+              className={`px-3 py-1 ${
+                job.category === "Web Development" &&
+                "text-blue-500 bg-blue-100/60"
+              } ${
+                job.category === "Graphics Design" &&
+                "text-emerald-500 bg-emerald-100/60"
+              } ${
+                job.category === "Digital Marketing" &&
+                "text-yellow-500 bg-yellow-100/60"
+              } ${
+                job.category === "Data Analyst" &&
+                "text-cyan-500 bg-cyan-100/60"
+              } ${
+                job.category === "Content Writer" &&
+                "text-orange-500 bg-orange-100/60"
+              } ${
+                job.category === "UI/UX Design" &&
+                "text-teal-500 bg-teal-100/60"
+              } text-xs rounded-full`}
+            >
+              {category}
+            </p>
           </span>
         </div>
 
         <div className="space-y-3">
-          <h1 className="mt-2 text-3xl font-bold text-gray-800 ">
-            {job_title}
-          </h1>
+          <h1 className="mt-2 text-3xl font-bold text-gray-800">{job_title}</h1>
 
           <p className="mt-2 text-lg text-gray-600 ">{description}</p>
           <p className="mt-6 text-lg font-bold text-gray-600 ">
@@ -99,10 +119,8 @@ const JobDetails = () => {
           </p>
           <div className="flex items-center justify-between gap-5">
             <div>
-              <p className="mt-2 text-sm  text-gray-600 ">
-                Name: {buyer?.name}
-              </p>
-              <p className="mt-2 text-sm  text-gray-600 ">
+              <p className="mt-2 text-sm  text-gray-600">Name: {buyer?.name}</p>
+              <p className="mt-2 text-sm  text-gray-600">
                 Email: {buyer?.email}
               </p>
             </div>
@@ -110,7 +128,7 @@ const JobDetails = () => {
               <img src={buyer?.photo} alt="" />
             </div>
           </div>
-          <p className="mt-6 text-lg font-bold text-gray-700 ">
+          <p className="mt-6 text-lg font-bold text-gray-700">
             Range: ${minimum_price} - ${maximum_price}
           </p>
         </div>
