@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.55.0",
     "@tanstack/react-query-devtools": "^5.55.0",
+    "animate.css": "^4.1.1",
     "axios": "^1.7.7",
     "date-fns": "^3.6.0",
     "firebase": "^10.12.3",

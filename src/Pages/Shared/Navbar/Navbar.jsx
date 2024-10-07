@@ -22,6 +22,9 @@ const Navbar = () => {
       <NavLink to="/all-jobs" className="p-1 px-2">
         All Jobs
       </NavLink>
+      <NavLink to="/contact" className="p-1 px-2">
+      Contact Us
+      </NavLink>
     </>
   );
 
