@@ -52,10 +52,10 @@ const AddJob = () => {
   return (
     <>
       <Helmet>
-        <title>Job Wave | Add Job</title>
+        <title>Add Job | Job Wave</title>
       </Helmet>
-      <div className="max-w-screen-2xl mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] mt-4 md:mt-10 mb-12">
-        <section className="w-full md:w-3/4 lg:w-1/2 p-4 pb-6 md:p-6 mx-auto bg-white rounded-md shadow-xl">
+      <div className="max-w-screen-2xl mx-auto flex justify-center items-center min-h-[calc(100vh-306px)] mt-4 md:mt-10 mb-12 animate__animated animate__zoomIn">
+        <section className="w-full md:w-3/4 lg:w-1/2 p-4 pb-6 md:p-6 mx-auto bg-white rounded-md shadow-2xl">
           <h2 className="text-center text-2xl font-extrabold text-gray-700 capitalize">
             Post a Job
           </h2>

@@ -53,14 +53,14 @@ const MyPostedJobs = () => {
   return (
     <>
       <Helmet>
-        <title>Job Wave | Posted Jobs</title>
+        <title>Posted Jobs | Job Wave</title>
       </Helmet>
       <section className="min-h-[calc(100vh-304px)] max-w-screen-2xl mx-auto px-4 py-12">
         <div className="flex items-center gap-x-3">
           <h2 className="text-xl font-bold text-gray-700">My Posted Jobs</h2>
 
-          <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
-            {jobs.length} Job
+          <span className="px-3 py-1 text-[14px] text-blue-600 bg-blue-100 rounded-full">
+            {jobs.length}
           </span>
         </div>
 
@@ -177,7 +177,7 @@ const MyPostedJobs = () => {
                             {/* Delete Button */}
                             <button
                               onClick={() => handleDelete(job._id)}
-                              className="btn border-none text-white hover:bg-red-600 bg-red-500 transition-colors duration-200   hover:text-red-700 focus:outline-none"
+                              className="btn border-none text-white hover:bg-red-600 bg-red-500 transition-colors duration-200   hover:text-white focus:outline-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@ const MyPostedJobs = () => {
                             {/* Update */}
                             <Link
                               to={`/update/${job._id}`}
-                              className="btn border-none text-white hover:bg-blue-600 bg-blue-500 transition-colors duration-200  hover:text-blue-700 focus:outline-none"
+                              className="btn border-none text-white hover:bg-blue-600 bg-blue-500 transition-colors duration-200  hover:text-white focus:outline-none"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

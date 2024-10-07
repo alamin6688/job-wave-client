@@ -27,7 +27,7 @@ const MyBids = () => {
   return (
     <>
       <Helmet>
-        <title>Job Wave | My Bids</title>
+        <title>My Bids | Job Wave</title>
       </Helmet>
       <section className="min-h-[calc(100vh-304px)] max-w-screen-2xl mx-auto px-4 py-12">
         <div className="flex items-center gap-x-3">

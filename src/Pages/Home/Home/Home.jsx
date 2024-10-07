@@ -9,7 +9,7 @@ const Home = () => {
     <>
       {" "}
       <Helmet>
-        <title>Job Wave | Home</title>
+        <title>Home | Job Wave</title>
       </Helmet>
       <div className="min-h-[calc(100vh-286px)]">
         <Banner></Banner>

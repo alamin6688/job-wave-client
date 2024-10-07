@@ -16,7 +16,7 @@ import bgimg3 from "../../../assets/carousel3.jpg";
 
 export default function Carousel() {
   return (
-    <div className="container px-4 py-4 md:py-10 mx-auto">
+    <div className="max-w-screen-2xl px-4 py-4 md:py-10 mx-auto">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -47,7 +47,7 @@ export default function Carousel() {
         <SwiperSlide>
           <Slide
             image={bgimg3}
-            text="Start Your Digital Marketing Campaigns up n running."
+            text="Start Your Digital Marketing Campaigns up in running."
           />
         </SwiperSlide>
       </Swiper>
