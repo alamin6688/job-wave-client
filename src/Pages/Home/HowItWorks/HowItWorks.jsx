@@ -29,9 +29,14 @@ const HowItWorks = () => {
   return (
     <div className="max-w-screen-2xl mx-auto mt-4 mb-8 pb-6 px-4">
       <div className="mx-auto text-center">
-        <h2 className="text-3xl font-bold text-center capitalize lg:text-3xl pt-4 pb-8">
+        <h2 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
           How It Works
         </h2>
+        <p className="w-full md:w-3/4 mx-auto my-6 text-center text-gray-500">
+          Discover how our platform works and empowers both freelancers and
+          employers. Follow these simple steps to get started and achieve
+          success.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <div
