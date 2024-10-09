@@ -52,7 +52,7 @@ const Portfolio = () => {
 
   return (
     <section className="bg-white">
-      <div className="container px-6 pt-6 pb-10 mx-auto">
+      <div className="max-w-screen-2xl px-6 pt-4 pb-10 mx-auto">
         <h1 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
           Portfolio
         </h1>
@@ -61,7 +61,7 @@ const Portfolio = () => {
           platform. Each project showcases unique skills and expertise tailored
           to meet specific client needs.
         </p>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 pb-6 lg:pb-8 animate__animated animate__zoomIn">
+        <div className="grid grid-cols-1 gap-6 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 pb-6 lg:pb-8 animate__animated animate__zoomIn">
           {projects.map((project, index) => (
             <div
               key={index}

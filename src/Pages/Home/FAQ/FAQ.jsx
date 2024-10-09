@@ -1,13 +1,13 @@
 const FAQ = () => {
   return (
-    <div className="max-w-screen-2xl mx-auto mt-4 mb-8 pb-6 px-4">
+    <div className="max-w-screen-2xl mx-auto mt-4  pb-6 px-4">
       <div className="px-2 text-center">
         <h1 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
           Frequently Asked Questions
         </h1>
         <p className="w-full md:w-3/4 mx-auto my-4 text-center text-gray-500 pb-2 md:pb-4">
           Find answers to the most common questions about our platform. If you
-          need further assistance, feel free to reach out to our support team.
+          need further assistance feel free to reach out to our support team. We are here to help you get the most out of our services.
         </p>
       </div>
       <div className="collapse bg-base-100">
