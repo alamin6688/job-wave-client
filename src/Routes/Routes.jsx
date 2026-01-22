@@ -13,6 +13,8 @@ import AllJobs from "../Pages/AllJobs/AllJobs";
 import MyBids from "../Pages/MyBids/MyBids";
 import BidRequests from "../Pages/BidRequests/BidRequests";
 import Contact from "../Pages/Contact/Contact";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import { PricingPage } from "../Pages/Pricing/Pricing";
 
 export const router = createBrowserRouter([
@@ -36,6 +38,36 @@ export const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <PricingPage></PricingPage>,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: <DashboardHome></DashboardHome>,
+          },
+          {
+            path: "add-job",
+            element: <AddJob></AddJob>,
+          },
+          {
+            path: "my-posted-jobs",
+            element: <MyPostedJobs></MyPostedJobs>,
+          },
+          {
+            path: "my-bids",
+            element: <MyBids></MyBids>,
+          },
+          {
+            path: "bid-requests",
+            element: <BidRequests></BidRequests>,
+          },
+        ],
       },
       {
         path: "/sign-up",

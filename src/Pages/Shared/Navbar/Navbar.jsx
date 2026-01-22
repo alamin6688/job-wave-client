@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { LayoutDashboard } from "lucide-react";
 import useAuth from "../../../Hooks/UseAuth";
 
 const Navbar = () => {
@@ -41,7 +42,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="z-50 relative max-w-screen-2xl mx-auto border-b-2 py-2">
+    <div className="z-50 relative mx-auto border-b-2 py-2">
       <div className="navbar px-4">
         <div className="navbar-start">
           <div className="dropdown">
@@ -120,6 +121,17 @@ const Navbar = () => {
               </Link>
             </div>
           )}
+          {user && (
+            <div className="mr-2">
+              <NavLink
+                to="/dashboard"
+                title="Dashboard"
+                className="btn btn-ghost btn-circle flex items-center justify-center"
+              >
+                <LayoutDashboard className="w-6 h-6" />
+              </NavLink>
+            </div>
+          )}
           <div className="dropdown dropdown-end">
             {user && (
               <div>
@@ -144,22 +156,25 @@ const Navbar = () => {
                 </div>
                 <ul className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1000] mt-3 w-44 p-2 space-y-1 shadow font-semibold">
                   <li>
-                    <NavLink to="/add-job" className="p-1 px-2">
+                    <NavLink to="/dashboard/add-job" className="p-1 px-2">
                       Add Job
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/my-posted-jobs" className="p-1 px-2">
+                    <NavLink
+                      to="/dashboard/my-posted-jobs"
+                      className="p-1 px-2"
+                    >
                       My Posted Jobs
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/my-bids" className="p-1 px-2">
+                    <NavLink to="/dashboard/my-bids" className="p-1 px-2">
                       My Bids
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/bid-requests" className="p-1 px-2">
+                    <NavLink to="/dashboard/bid-requests" className="p-1 px-2">
                       Bid Requests
                     </NavLink>
                   </li>

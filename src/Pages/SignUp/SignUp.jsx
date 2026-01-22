@@ -12,8 +12,8 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
-    const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
     return regex.test(password);
   };
 
@@ -50,7 +50,7 @@ const SignUp = () => {
         {
           email: result?.user?.email,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       console.log(data);
 
