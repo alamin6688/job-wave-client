@@ -13,6 +13,7 @@ import AllJobs from "../Pages/AllJobs/AllJobs";
 import MyBids from "../Pages/MyBids/MyBids";
 import BidRequests from "../Pages/BidRequests/BidRequests";
 import Contact from "../Pages/Contact/Contact";
+import { PricingPage } from "../Pages/Pricing/Pricing";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
         element: <Contact></Contact>,
       },
       {
+        path: "/pricing",
+        element: <PricingPage></PricingPage>,
+      },
+      {
         path: "/sign-up",
         element: <SignUp></SignUp>,
       },
@@ -42,29 +47,53 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-job",
-        element: <PrivateRoute><AddJob></AddJob></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-posted-jobs",
-        element: <PrivateRoute><MyPostedJobs></MyPostedJobs></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyPostedJobs></MyPostedJobs>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-bids",
-        element: <PrivateRoute><MyBids></MyBids></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyBids></MyBids>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/bid-requests",
-        element: <PrivateRoute><BidRequests></BidRequests></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BidRequests></BidRequests>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/update/:id',
-        element: <PrivateRoute><UpdateJob></UpdateJob></PrivateRoute>,
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateJob></UpdateJob>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
       },
       {
         path: "/job/:id",
-        element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <JobDetails></JobDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
       },

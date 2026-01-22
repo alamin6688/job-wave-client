@@ -23,7 +23,10 @@ const Navbar = () => {
         All Jobs
       </NavLink>
       <NavLink to="/contact" className="p-1 px-2">
-      Contact Us
+        Contact Us
+      </NavLink>
+      <NavLink to="/pricing" className="p-1 px-2">
+        Pricing
       </NavLink>
     </>
   );
@@ -130,7 +133,7 @@ const Navbar = () => {
                     title={user?.displayName || "Guest"}
                   >
                     <img
-                    referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer"
                       alt="User avatar"
                       src={
                         user?.photoURL ||
