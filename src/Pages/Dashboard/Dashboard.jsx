@@ -90,7 +90,7 @@ const Dashboard = () => {
         <title>Dashboard | Job Wave</title>
       </Helmet>
 
-      <div className="min-h-[calc(100vh-286px)] flex bg-gray-50 relative">
+      <div className="min-h-[calc(100vh-286px)] flex bg-gray-50 relative w-full">
         {/* Mobile Header with Toggle - Only on Mobile */}
         {!isLargeScreen && (
           <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 px-4 py-3 z-50 flex items-center justify-between">
@@ -112,47 +112,22 @@ const Dashboard = () => {
 
         {/* Sidebar - Always visible on desktop, toggleable on mobile */}
         <motion.aside
-          initial={isLargeScreen ? {} : { x: -250 }}
-          animate={isLargeScreen ? {} : { x: isSidebarOpen ? 0 : -250 }}
+          initial={isLargeScreen ? {} : { x: -280 }}
+          animate={isLargeScreen ? {} : { x: isSidebarOpen ? 0 : -280 }}
           transition={{ duration: 0.3 }}
           className={`${
-            isLargeScreen ? "w-64 static" : "fixed top-0 left-0 w-64"
-          } bg-white border-r border-gray-200 z-40 h-screen overflow-y-auto lg:overflow-y-visible ${
+            isLargeScreen ? "w-72 shrink-0" : "fixed top-0 left-0 w-72"
+          } bg-white border-r border-gray-200 z-40 h-screen overflow-y-auto ${
             isLargeScreen ? "pt-0" : "pt-20"
           }`}
         >
-          <div className="p-4 md:p-6">
+          <div className="p-4 md:p-6 h-full flex flex-col">
             <h2 className="text-2xl font-bold text-gray-900 mb-8 hidden lg:block">
               Dashboard
             </h2>
 
-            {/* User Info Card */}
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 mb-6 md:mb-8 border border-blue-100">
-              <div className="flex items-center gap-3 mb-3">
-                {user?.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt={user.displayName}
-                    className="w-10 md:w-12 h-10 md:h-12 rounded-full object-cover"
-                  />
-                ) : (
-                  <div className="w-10 md:w-12 h-10 md:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm md:text-base">
-                    {user?.displayName?.charAt(0) || "U"}
-                  </div>
-                )}
-                <div>
-                  <p className="font-semibold text-gray-900 text-xs md:text-sm">
-                    {user?.displayName || "User"}
-                  </p>
-                  <p className="text-xs text-gray-600">
-                    {user?.email}
-                </p>
-                </div>
-              </div>
-            </div>
-
             {/* Navigation Menu */}
-            <nav className="space-y-3">
+            <nav className="space-y-3 flex-1">
               {dashboardMenus.map((menu, index) => {
                 const Icon = menu.icon;
                 const active = isActive(menu.path);
@@ -188,22 +163,41 @@ const Dashboard = () => {
                 );
               })}
             </nav>
+
+            {/* User Info Card - At Bottom */}
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 mt-8 border border-blue-100">
+              <div className="flex items-center gap-3 mb-3">
+                {user?.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName}
+                    className="w-10 md:w-12 h-10 md:h-12 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 md:w-12 h-10 md:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm md:text-base">
+                    {user?.displayName?.charAt(0) || "U"}
+                  </div>
+                )}
+                <div>
+                  <p className="font-semibold text-gray-900 text-xs md:text-sm">
+                    {user?.displayName || "User"}
+                  </p>
+                  <p className="text-xs text-gray-600">{user?.email}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.aside>
 
-        
-
         {/* Main Content - Beside sidebar */}
-        <main
-          className={`flex-1 w-full overflow-hidden ${!isLargeScreen && "mt-16"}`}
-        >
+        <main className="flex-1 w-full min-w-0 overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="h-full overflow-y-auto"
+            className="h-full w-full overflow-y-auto overflow-x-hidden"
           >
-            <div className="p-3 md:p-6 lg:p-8 min-h-screen">
+            <div className="w-full p-3 md:p-6 lg:p-8 min-h-screen">
               {/* Outlet for nested routes */}
               <Outlet />
             </div>

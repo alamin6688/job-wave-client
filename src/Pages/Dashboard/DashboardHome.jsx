@@ -103,7 +103,7 @@ const DashboardHome = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {[
             { label: "Total Jobs Posted", value: "0", icon: FileText },
             { label: "Active Bids", value: "0", icon: Send },
@@ -132,7 +132,7 @@ const DashboardHome = () => {
               </motion.div>
             );
           })}
-        </div>
+        </div> */}
 
         {/* Getting Started Guide */}
         <motion.div
