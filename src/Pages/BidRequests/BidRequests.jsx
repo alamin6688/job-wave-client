@@ -16,14 +16,17 @@ const BidRequests = () => {
   } = useQuery({
     queryFn: () => getData(),
     queryKey: ["bids", user?.email],
+    enabled: !!user?.email,
   });
 
   const getData = async () => {
+    if (!user?.email) return [];
     try {
       const { data } = await axiosSecure.get(`/bid-requests/${user?.email}`);
       return data;
     } catch (error) {
       console.error("Error fetching bid requests:", error);
+      return [];
     }
   };
 

@@ -13,8 +13,14 @@ const MyBids = () => {
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axiosSecure(`/my-bids/${user?.email}`);
-    setBids(data);
+    if (!user?.email) return;
+    try {
+      const { data } = await axiosSecure(`/my-bids/${user?.email}`);
+      setBids(data);
+    } catch (error) {
+      console.error("Error fetching bids:", error);
+      setBids([]);
+    }
   };
 
   // Handle Status

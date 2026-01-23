@@ -16,8 +16,14 @@ const MyPostedJobs = () => {
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axiosSecure(`/jobs/${user?.email}`);
-    setJobs(data);
+    if (!user?.email) return;
+    try {
+      const { data } = await axiosSecure(`/jobs/${user?.email}`);
+      setJobs(data);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+      setJobs([]);
+    }
   };
 
   const handleDelete = async (id) => {

@@ -40,11 +40,18 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true);
-    const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
-      withCredentials: true,
-    });
-    console.log(data);
-    return signOut(auth);
+    try {
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
+        withCredentials: true,
+      });
+      console.log(data);
+      setLoading(false);
+      return signOut(auth);
+    } catch (error) {
+      console.log("Logout error:", error);
+      setLoading(false);
+      return signOut(auth);
+    }
   };
 
   const updateUserProfile = (name, photo) => {
