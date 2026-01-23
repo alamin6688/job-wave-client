@@ -78,38 +78,6 @@ export const router = createBrowserRouter([
         element: <SignIn></SignIn>,
       },
       {
-        path: "/add-job",
-        element: (
-          <PrivateRoute>
-            <AddJob></AddJob>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-posted-jobs",
-        element: (
-          <PrivateRoute>
-            <MyPostedJobs></MyPostedJobs>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-bids",
-        element: (
-          <PrivateRoute>
-            <MyBids></MyBids>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/bid-requests",
-        element: (
-          <PrivateRoute>
-            <BidRequests></BidRequests>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/update/:id",
         element: (
           <PrivateRoute>
