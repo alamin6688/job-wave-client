@@ -7,6 +7,7 @@ import Portfolio from "../Portfolio/Portfolio";
 import Stats from "../Stats/Stats";
 import Trust from "../Trust/Trust";
 import CTA from "../CTA/CTA";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
         <Trust />
         <Portfolio />
         <FAQ />
+        <Testimonials />
         <CTA/>
       </div>
     </>
