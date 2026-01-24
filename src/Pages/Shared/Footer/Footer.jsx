@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Waves } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -8,12 +8,15 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="p-2 bg-white rounded-lg text-gray-900">
-                <Zap className="w-5 h-5" />
+            {/* Logo */}
+            <NavLink to="/" className="flex items-center space-x-2 group mb-3">
+              <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg text-white group-hover:shadow-lg transition-shadow">
+                <Waves className="w-6 h-6" />
               </div>
-              <span className="text-xl font-bold">Job Wave</span>
-            </div>
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-white">
+                Job Wave
+              </span>
+            </NavLink>
             <p className="text-gray-400 text-sm leading-relaxed">
               Connecting the world's best talent with forward-thinking
               companies.
