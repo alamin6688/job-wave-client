@@ -1,90 +1,109 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
+const faqData = [
+  {
+    question: "How do I create an account?",
+    answer:
+      'You can create an account by clicking the "Sign In" button at the top right of the page. From there, go to the Sign Up page and fill out your name, email, password, and profile photo. Once completed, you can start posting or bidding on jobs.',
+  },
+  {
+    question: "How does the bidding process work?",
+    answer:
+      'After finding a job you like, click the "Place Bid" button on the job details page. Submit your bid amount and deadline. The job owner reviews bids and accepts or rejects them. You can track all bids from the "My Bids" page.',
+  },
+  {
+    question: "How do I post a job?",
+    answer:
+      'Once logged in, go to the "Add Job" page. Enter job details such as title, category, description, deadline, and price range. After submission, freelancers can start bidding on your job.',
+  },
+  {
+    question: "Can I update or delete my posted jobs?",
+    answer:
+      'Yes. Navigate to the "My Posted Jobs" page where you can edit or delete your listings. You can only manage jobs you created.',
+  },
+  {
+    question: "How do I know if my bid is accepted?",
+    answer:
+      'Check the status of your bids on the "My Bids" page. Accepted bids will show as "In Progress". Rejected bids will be marked accordingly.',
+  },
+];
+
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
   return (
-    <div className="max-w-screen-2xl mx-auto mt-4  pb-6 px-4">
-      <div className="px-2 text-center">
-        <h1 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
+    <section className="container mx-auto mt-4 pb-6 px-4 lg:px-0">
+      {/* ===== Header ===== */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <h1 className="text-2xl lg:text-3xl font-bold capitalize mb-4">
           Frequently Asked Questions
         </h1>
-        <p className="w-full md:w-3/4 mx-auto my-4 text-center text-gray-500 pb-2 md:pb-4">
+        <p className="w-full md:w-3/4 lg:w-1/2 mx-auto text-gray-500">
           Find answers to the most common questions about our platform. If you
-          need further assistance feel free to reach out to our support team. We are here to help you get the most out of our services.
+          need further assistance, feel free to reach out to our support team.
         </p>
+      </motion.div>
+
+      {/* ===== FAQ Items ===== */}
+      <div className="max-w-3xl mx-auto space-y-4">
+        {faqData.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.08 }}
+            viewport={{ once: true }}
+            className="border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-300 transition-colors"
+          >
+            <button
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              className="flex justify-between items-center w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              <span className="text-lg font-semibold text-gray-900">
+                {item.question}
+              </span>
+
+              <motion.span
+                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                {openIndex === index ? (
+                  <ChevronUp className="w-5 h-5 text-blue-600" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                )}
+              </motion.span>
+            </button>
+
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                    <p className="text-gray-600 leading-relaxed text-[17px]">
+                      {item.answer}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
       </div>
-      <div className="collapse bg-base-100">
-        <input type="radio" name="my-accordion-2" defaultChecked />
-        <div className="collapse-title text-xl font-bold">
-          How do I create an account?
-        </div>
-        <div className="collapse-content">
-          <p className="text-[18px]">
-            You can create an account by clicking the &quot;Sign In&quot; button
-            at the top right of the page. It will redirect you into a Sign In
-            page. Then go to Sign Up page by clicking &quot;Or Sign Up.&quot;
-            Fill out your name, email, password, and profile photo. After
-            submission, you will be able to access the platform and start
-            posting or bidding on jobs.
-          </p>
-        </div>
-      </div>
-      <div className="collapse collapse-arrow bg-base-100">
-        <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-bold">
-          How does the bidding process work?
-        </div>
-        <div className="collapse-content">
-          <p className="text-[18px]">
-            Once you find a job you&apos;re interested in, you can click on the
-            &quot;Place Bid&quot; button on the job details page. Submit your
-            bid amount and deadline. The job owner will review your bid and
-            either accept or reject it. You can view your bids on the &quot;My
-            Bids&quot; page.
-          </p>
-        </div>
-      </div>
-      <div className="collapse collapse-arrow bg-base-100">
-        <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-bold">
-          How do I post a job?
-        </div>
-        <div className="collapse-content">
-          <p className="text-[18px]">
-            To post a job, go to the &quot;Add Job&quot; page after logging in.
-            Fill in the required details such as job title, category, deadline,
-            description and price range. Once submitted, the job will be listed
-            under the relevant category and freelancers can start bidding on it.
-          </p>
-        </div>
-      </div>
-      <div className="collapse collapse-arrow bg-base-100">
-        <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-bold">
-          Can I update or delete my posted jobs?
-        </div>
-        <div className="collapse-content">
-          <p className="text-[18px]">
-            Yes, you can update or delete any job you have posted. Navigate to
-            the &quot;My Posted Jobs&quot; page, where you will see a list of
-            your jobs with options to edit or remove them. You cannot update or
-            delete jobs posted by others.
-          </p>
-        </div>
-      </div>
-      <div className="collapse collapse-arrow bg-base-100">
-        <input type="radio" name="my-accordion-2" />
-        <div className="collapse-title text-xl font-bold">
-          How do I know if my bid is accepted?
-        </div>
-        <div className="collapse-content">
-          <p className="text-[18px]">
-            You can check the status of your bids on the &quot;My Bids&quot;
-            page. If your bid is accepted, the status will be updated to
-            &quot;In Progress.&quot; If it is rejected, the status will be
-            marked as &quot;Rejected.&quot; You will also be able to mark a job
-            as complete once the work is finished.
-          </p>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 
