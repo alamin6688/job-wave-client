@@ -5,6 +5,7 @@ import HowItWorks from "../HowItWorks/HowItWorks";
 import FAQ from "../FAQ/FAQ";
 import Portfolio from "../Portfolio/Portfolio";
 import Stats from "../Stats/Stats";
+import Trust from "../Trust/Trust";
 
 const Home = () => {
   return (
@@ -14,12 +15,13 @@ const Home = () => {
         <title>Home | Job Wave</title>
       </Helmet>
       <div className="min-h-[calc(100vh-286px)]">
-        <Banner></Banner>
-        <Stats></Stats>
-        <TabCategories></TabCategories>
-        <HowItWorks></HowItWorks>
-        <FAQ></FAQ>
-        <Portfolio></Portfolio>
+        <Banner />
+        <Stats />
+        <TabCategories />
+        <HowItWorks />
+        <Trust />
+        <FAQ />
+        <Portfolio />
       </div>
     </>
   );
