@@ -6,6 +6,7 @@ import FAQ from "../FAQ/FAQ";
 import Portfolio from "../Portfolio/Portfolio";
 import Stats from "../Stats/Stats";
 import Trust from "../Trust/Trust";
+import CTA from "../CTA/CTA";
 
 const Home = () => {
   return (
@@ -20,8 +21,9 @@ const Home = () => {
         <TabCategories />
         <HowItWorks />
         <Trust />
-        <FAQ />
         <Portfolio />
+        <FAQ />
+        <CTA/>
       </div>
     </>
   );
