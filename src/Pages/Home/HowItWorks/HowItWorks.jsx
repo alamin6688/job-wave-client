@@ -1,57 +1,152 @@
+import { motion, AnimatePresence } from 'framer-motion'
+import { Briefcase, Users, DollarSign, PenTool, CheckCircle } from 'lucide-react'
+import { useState } from 'react';
+
+
+
 const HowItWorks = () => {
-  const steps = [
-    {
-      title: "1. Register and Create an Account",
-      description:
-        "Sign up with your email or use Google to create your account and start exploring the platform.",
-      icon: "📝",
-    },
-    {
-      title: "2. Post a Job or Browse Jobs",
-      description:
-        "As an employer, post a job with details and set a price range. As a freelancer, browse available jobs that match your skills.",
-      icon: "💼",
-    },
-    {
-      title: "3. Place a Bid",
-      description:
-        "Freelancers can place a bid on any job they find interesting. Set your price and deadline, and submit your offer.",
-      icon: "📤",
-    },
-    {
-      title: "4. Hire & Complete the Job",
-      description:
-        "Employers can review bids and hire the best freelancer for the job. Complete the project and get paid through the platform.",
-      icon: "✅",
-    },
-  ];
+  
+  const [activeTab, setActiveTab] = useState('freelancer');
 
   return (
-    <div className="max-w-screen-2xl mx-auto mt-4 mb-8 pb-6 px-4">
-      <div className="mx-auto text-center">
-        <h2 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
-          How It Works
-        </h2>
-        <p className="w-full md:w-3/4 mx-auto my-6 text-center text-gray-500">
-          Discover how our platform works and empowers both freelancers and
-          employers. Follow these simple steps to get started and achieve
-          success.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 p-6 rounded-lg shadow-xl hover:shadow-2xl  duration-300 hover:scale-[1.05] transition-all"
-            >
-              <div className="text-6xl mb-4">{step.icon}</div>
-              <h3 className="text-xl text-gray-800 font-bold mb-2">
-                {step.title}
-              </h3>
-              <p className="text-gray-600">{step.description}</p>
+    <div className="container mx-auto mt-4 mb-8 pb-6 px-4">
+      <section className="py-24 bg-white">
+        <div className="px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              How Our Platform Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Simple, secure, and streamlined for everyone.
+            </p>
+          </div>
+
+          {/* Tab Switcher */}
+          <div className="flex justify-center mb-16">
+            <div className="bg-gray-100 p-1 rounded-full inline-flex">
+              <button
+                onClick={() => setActiveTab('freelancer')}
+                className={`px-8 py-3 rounded-full text-sm font-semibold transition-all ${activeTab === 'freelancer' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'}`}
+              >
+                For Freelancers
+              </button>
+              <button
+                onClick={() => setActiveTab('employer')}
+                className={`px-8 py-3 rounded-full text-sm font-semibold transition-all ${activeTab === 'employer' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'}`}
+              >
+                For Employers
+              </button>
             </div>
-          ))}
+          </div>
+
+          {/* Tab Content */}
+          <div className="relative min-h-[300px]">
+            <AnimatePresence mode="wait">
+              {activeTab === 'freelancer' ? (
+                <motion.div
+                  key="freelancer"
+                  initial={{
+                    opacity: 0,
+                    x: -20,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: 20,
+                  }}
+                  transition={{
+                    duration: 0.3,
+                  }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-12"
+                >
+                  {[
+                    {
+                      title: 'Create Profile',
+                      desc: 'Showcase your skills, portfolio, and experience to stand out.',
+                      icon: Users,
+                    },
+                    {
+                      title: 'Browse & Bid',
+                      desc: 'Find jobs that match your skills and submit competitive proposals.',
+                      icon: Briefcase,
+                    },
+                    {
+                      title: 'Get Paid Securely',
+                      desc: 'Funds are held in escrow until work is approved. No chasing payments.',
+                      icon: DollarSign,
+                    },
+                  ].map((step, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="w-16 h-16 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-6">
+                        <step.icon className="w-8 h-8" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="employer"
+                  initial={{
+                    opacity: 0,
+                    x: 20,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: -20,
+                  }}
+                  transition={{
+                    duration: 0.3,
+                  }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-12"
+                >
+                  {[
+                    {
+                      title: 'Post a Job',
+                      desc: 'Describe your project, budget, and timeline to attract top talent.',
+                      icon: PenTool,
+                    },
+                    {
+                      title: 'Review Proposals',
+                      desc: 'Compare bids, portfolios, and reviews to find the perfect match.',
+                      icon: Users,
+                    },
+                    {
+                      title: 'Collaborate & Pay',
+                      desc: 'Manage the project and release payment only when satisfied.',
+                      icon: CheckCircle,
+                    },
+                  ].map((step, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="w-16 h-16 mx-auto bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6">
+                        <step.icon className="w-8 h-8" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

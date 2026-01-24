@@ -66,7 +66,7 @@ const JobDetails = () => {
       console.log(data);
       if (data.insertedId) {
         toast.success("Bid Placed Successfully!");
-        navigate("/my-bids");
+        navigate(`/dashboard/my-bids`);
       }
     } catch (error) {
       toast.error("Bid Already Placed!");
@@ -85,25 +85,19 @@ const JobDetails = () => {
           </span>
           <span className="text-[8px] uppercase rounded-full font-semibold">
             <p
-              className={`px-3 py-1 ${
-                job.category === "Web Development" &&
+              className={`px-3 py-1 ${job.category === "Web Development" &&
                 "text-blue-500 bg-blue-100/60"
-              } ${
-                job.category === "Graphics Design" &&
+                } ${job.category === "Graphics Design" &&
                 "text-emerald-500 bg-emerald-100/60"
-              } ${
-                job.category === "Digital Marketing" &&
+                } ${job.category === "Digital Marketing" &&
                 "text-yellow-500 bg-yellow-100/60"
-              } ${
-                job.category === "Data Analyst" &&
+                } ${job.category === "Data Analyst" &&
                 "text-cyan-500 bg-cyan-100/60"
-              } ${
-                job.category === "Content Writer" &&
+                } ${job.category === "Content Writer" &&
                 "text-orange-500 bg-orange-100/60"
-              } ${
-                job.category === "UI/UX Design" &&
+                } ${job.category === "UI/UX Design" &&
                 "text-teal-500 bg-teal-100/60"
-              } text-xs rounded-full`}
+                } text-xs rounded-full`}
             >
               {category}
             </p>
