@@ -97,7 +97,23 @@ const Trust = () => {
             </div>
           </div>
 
-          <div className="relative">
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -20,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              delay: 0.1,
+            }}
+            className="relative"
+          >
             <div className="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-2xl">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center space-x-3">
@@ -155,7 +171,7 @@ const Trust = () => {
                 <div className="text-xs text-gray-500">Payment Protection</div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

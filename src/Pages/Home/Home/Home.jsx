@@ -25,7 +25,7 @@ const Home = () => {
         <Portfolio />
         <FAQ />
         <Testimonials />
-        <CTA/>
+        <CTA />
       </div>
     </>
   );

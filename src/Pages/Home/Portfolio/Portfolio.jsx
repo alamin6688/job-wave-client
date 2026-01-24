@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const Portfolio = () => {
   const projects = [
     {
@@ -37,7 +39,7 @@ const Portfolio = () => {
       description:
         "Conducted data analysis using Python and Excel to identify key business insights. Delivered detailed reports to guide client decision-making processes.",
       imageUrl:
-        "https://i.postimg.cc/JzzTh7Np/luke-chesser-JKUTr-J4v-K00-unsplash.jpgv",
+        "https://i.postimg.cc/JzzTh7Np/luke-chesser-JKUTr-J4v-K00-unsplash.jpg",
       category: "Data Analysis",
     },
     {
@@ -50,25 +52,77 @@ const Portfolio = () => {
     },
   ];
 
+  // Parent container variant for stagger
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15, // Delay between cards
+      },
+    },
+  };
+
+  // Card animation
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="bg-white">
       <div className="max-w-screen-2xl px-6 pt-4 pb-10 mx-auto">
-        <h1 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
-          Portfolio
-        </h1>
-        <p className="w-full md:w-3/4 mx-auto my-6 text-center text-gray-500">
+        {/* Section Heading */}
+        <motion.h1
+          className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+        >
+          Portfolio Overview
+        </motion.h1>
+
+        {/* Section Description */}
+        <motion.p
+          className="w-full md:w-3/4 mx-auto my-6 text-center text-gray-500"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           Discover some of the best projects completed by freelancers on our
           platform. Each project showcases unique skills and expertise tailored
           to meet specific client needs.
-        </p>
-        <div className="grid grid-cols-1 gap-6 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 pb-6 lg:pb-8 animate__animated animate__zoomIn">
+        </motion.p>
+
+        {/* Projects Grid */}
+        <motion.div
+          className="grid grid-cols-1 gap-6 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 lg:grid-cols-3 pb-6 lg:pb-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group hover:scale-[1.05] transition-all"
-              style={{ backgroundImage: `url(${project.imageUrl})` }}
+              className="overflow-hidden rounded-lg cursor-pointer h-96 group hover:scale-[1.05] transition-all relative"
+              variants={cardVariants}
             >
-              <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
+              {/* Image */}
+              <img
+                src={project.imageUrl}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* Overlay Content */}
+              <div className="relative flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
                 <h2 className="mt-4 text-xl font-semibold text-white capitalize">
                   {project.title}
                 </h2>
@@ -77,9 +131,9 @@ const Portfolio = () => {
                 </p>
                 <p className="mt-2 text-white">{project.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
