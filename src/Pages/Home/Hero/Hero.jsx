@@ -7,14 +7,25 @@ const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    let throttleTimer = null;
+
     const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 15,
-        y: (e.clientY / window.innerHeight - 0.5) * 15,
-      });
+      if (throttleTimer) return;
+
+      throttleTimer = setTimeout(() => {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 15,
+          y: (e.clientY / window.innerHeight - 0.5) * 15,
+        });
+        throttleTimer = null;
+      }, 16); // ~60fps throttle
     };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (throttleTimer) clearTimeout(throttleTimer);
+    };
   }, []);
 
   const containerVariants = {
@@ -211,6 +222,13 @@ const Hero = () => {
               {/* Freelancer card */}
               <motion.div
                 className="absolute top-10 left-0 bg-white/90 backdrop-blur-md border border-blue-200 rounded-2xl p-6 shadow-xl shadow-blue-500/20 w-64"
+                style={{
+                  willChange: "transform",
+                  transform: `translate(${mousePosition.x * 0.2}px, ${
+                    mousePosition.y * 0.2
+                  }px)`,
+                  transition: "transform 0.15s ease-out",
+                }}
                 animate={{
                   y: [0, -15, 0],
                 }}
@@ -218,11 +236,6 @@ const Hero = () => {
                   duration: 5,
                   repeat: Infinity,
                   ease: "easeInOut",
-                }}
-                style={{
-                  transform: `translate(${mousePosition.x * 0.2}px, ${
-                    mousePosition.y * 0.2
-                  }px)`,
                 }}
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -251,6 +264,13 @@ const Hero = () => {
               {/* Job posting card */}
               <motion.div
                 className="absolute top-1/3 right-0 bg-white/90 backdrop-blur-md border border-indigo-200 rounded-2xl p-6 shadow-xl shadow-indigo-500/20 w-72"
+                style={{
+                  willChange: "transform",
+                  transform: `translate(${-mousePosition.x * 0.2}px, ${
+                    -mousePosition.y * 0.2
+                  }px)`,
+                  transition: "transform 0.15s ease-out",
+                }}
                 animate={{
                   y: [0, 15, 0],
                 }}
@@ -258,11 +278,6 @@ const Hero = () => {
                   duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut",
-                }}
-                style={{
-                  transform: `translate(${-mousePosition.x * 0.2}px, ${
-                    -mousePosition.y * 0.2
-                  }px)`,
                 }}
               >
                 <div className="flex items-start justify-between mb-3">
