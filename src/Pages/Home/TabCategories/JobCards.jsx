@@ -1,4 +1,16 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { CalendarDays } from "lucide-react";
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
 
 const JobCards = ({ job }) => {
   const {
@@ -10,51 +22,65 @@ const JobCards = ({ job }) => {
     category,
     deadline,
   } = job || {};
+
   return (
-    <Link
-      to={`/job/${_id}`}
-      className="w-full px-4 py-4  rounded-md shadow-xl bg-gray-100 hover:scale-[1.05] transition-all"
-    >
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-bold text-gray-700">
-          Deadline: {new Date(deadline).toLocaleDateString("en-GB")}
-        </span>
-        <span className="text-[8px] uppercase rounded-full font-semibold">
-          <p
-            className={`px-3 py-1 ${
-              job.category === "Web Development" &&
-              "text-blue-500 bg-blue-100/60"
-            } ${
-              job.category === "Graphics Design" &&
-              "text-emerald-500 bg-emerald-100/60"
-            } ${
-              job.category === "Digital Marketing" &&
-              "text-yellow-500 bg-yellow-100/60"
-            } ${
-              job.category === "Data Analyst" && "text-cyan-500 bg-cyan-100/60"
-            } ${
-              job.category === "Content Writer" &&
-              "text-orange-500 bg-orange-100/60"
-            } ${
-              job.category === "UI/UX Design" && "text-teal-500 bg-teal-100/60"
-            } text-xs rounded-full`}
+    <motion.div variants={cardVariants}>
+      <Link
+        to={`/job/${_id}`}
+        className="block rounded-lg border border-gray-300 bg-gray-100 p-4 shadow-md sm:p-6 hover:shadow-lg hover:scale-105 duration-300 hover:shadow-blue-200 transition-all"
+      >
+        {/* Header row */}
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <CalendarDays className="w-4 h-4" />
+            <span>{new Date(deadline).toLocaleDateString("en-GB")}</span>
+          </div>
+
+          <span
+            className={`px-3 py-1 text-xs font-semibold rounded-full
+              ${category === "Web Development" && "text-blue-600 bg-blue-100"}
+              ${
+                category === "Graphics Design" &&
+                "text-emerald-600 bg-emerald-100"
+              }
+              ${
+                category === "Digital Marketing" &&
+                "text-yellow-600 bg-yellow-100"
+              }
+              ${category === "Data Analyst" && "text-cyan-600 bg-cyan-100"}
+              ${
+                category === "Content Writer" && "text-orange-600 bg-orange-100"
+              }
+              ${category === "UI/UX Design" && "text-teal-600 bg-teal-100"}
+            `}
           >
             {category}
+          </span>
+        </div>
+
+        {/* Main content */}
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold text-gray-900 leading-snug">
+            {job_title}
+          </h3>
+
+          <p
+            className="mt-2 text-sm text-gray-600 line-clamp-2"
+            title={description}
+          >
+            {description}
           </p>
-        </span>
-      </div>
+        </div>
 
-      <div>
-        <h1 className="mt-2 text-xl font-bold text-gray-800">{job_title}</h1>
-
-        <p title={description} className="mt-2 text-lg text-gray-600 ">
-          {description.substring(0, 70)}...
-        </p>
-        <p className="mt-6 text-lg font-bold text-gray-700">
-          Range: ${minimum_price} - ${maximum_price}
-        </p>
-      </div>
-    </Link>
+        {/* Footer meta */}
+        <div className="mt-6 flex items-center gap-2 text-sm font-medium text-gray-700">
+          <p>Price:</p>
+          <span>
+            ${minimum_price} – ${maximum_price}
+          </span>
+        </div>
+      </Link>
+    </motion.div>
   );
 };
 

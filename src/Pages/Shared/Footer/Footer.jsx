@@ -47,10 +47,7 @@ const Footer = () => {
             <h4 className="font-bold mb-6">Company</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li>
-                <Link
-                  to="/whats-new"
-                  className="hover:text-white transition-colors"
-                >
+                <Link to="#" className="hover:text-white transition-colors">
                   What's New
                 </Link>
               </li>

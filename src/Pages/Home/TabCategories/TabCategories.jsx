@@ -3,6 +3,7 @@ import "react-tabs/style/react-tabs.css";
 import JobCards from "./JobCards";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const TabCategories = () => {
   const [jobs, setJobs] = useState([]);
@@ -36,16 +37,28 @@ const TabCategories = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto mt-4 mb-8 pb-6 px-4">
-      <h1 className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4">
+    <div className="container mx-auto mt-4 mb-8 pb-6 px-4">
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-2xl font-bold text-center capitalize lg:text-3xl pt-4"
+      >
         Browse Jobs By Categories
-      </h1>
+      </motion.h1>
 
-      <p className="w-full md:w-3/4 mx-auto my-6 text-center text-gray-500">
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="w-full md:w-3/4 mx-auto my-6 text-center text-gray-500"
+      >
         Explore a wide range of job opportunities tailored to your skills and
         interests. Start browsing today and find your next big project! Connect
         with top professionals and elevate your career.
-      </p>
+      </motion.p>
       <Tabs>
         <div className="container mx-auto flex items-center justify-center font-semibold">
           <TabList>
@@ -58,51 +71,87 @@ const TabCategories = () => {
           </TabList>
         </div>
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.12 }}
+            className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filterJobsByCategory("Web Development").map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.12 }}
+            className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filterJobsByCategory("Graphics Design").map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.12 }}
+            className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filterJobsByCategory("Digital Marketing").map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.12 }}
+            className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filterJobsByCategory("Data Analyst").map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.12 }}
+            className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filterJobsByCategory("Content Writer").map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.12 }}
+            className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filterJobsByCategory("UI/UX Design").map((job) => (
               <JobCards key={job._id} job={job} />
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
       </Tabs>
     </div>
