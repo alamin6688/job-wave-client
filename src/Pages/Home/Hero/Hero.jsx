@@ -53,7 +53,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       {/* Background */}
       {/* <WaveBackground /> */}
 
@@ -96,7 +96,7 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-0 w-full">
         <motion.div
-          className="flex flex-col lg:flex-row items-center justify-between py-12 gap-8 lg:gap-12"
+          className="flex flex-col lg:flex-row items-center justify-between w-full py-12 sm:py-16 md:py-20 lg:py-24 gap-6 sm:gap-8 lg:gap-12"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -203,7 +203,7 @@ const Hero = () => {
 
           {/* Right Content - Visual Cards (Hidden on Mobile, Visible on Desktop) */}
           <motion.div
-            className="hidden lg:flex flex-1 relative w-full h-[600px]"
+            className="hidden lg:block flex-1 relative w-full h-[500px]"
             variants={imageVariants}
           >
             {/* Main illustration container */}
