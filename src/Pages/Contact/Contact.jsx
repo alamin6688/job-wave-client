@@ -72,7 +72,7 @@ export default function ContactPage() {
         </section>
 
         {/* Main Content */}
-        <section className="pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section className="pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
@@ -89,11 +89,11 @@ export default function ContactPage() {
                   duration: 0.5,
                   delay: 0.1,
                 }}
-                className="bg-white rounded-3xl border border-gray-200 shadow-sm p-8 md:p-12"
+                className="bg-[#F9FAFB] rounded-3xl border border-gray-200 shadow-sm p-8 md:p-12"
               >
                 {!isSubmitted ? (
                   <>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2 ">
                       Send us a message
                     </h2>
                     <p className="text-gray-600 mb-8">
