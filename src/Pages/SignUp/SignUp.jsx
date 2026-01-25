@@ -6,14 +6,21 @@ import SocialLogin from "../../Components/SocialLogin";
 import logo from "../../assets/logo.png";
 import toast from "react-hot-toast";
 import axios from "axios";
+import {
+  motion,
+  LazyMotion,
+  domAnimation,
+  useReducedMotion,
+} from "framer-motion";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
 
   const validatePassword = (password) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
     return regex.test(password);
   };
 
@@ -27,46 +34,31 @@ const SignUp = () => {
 
     if (!validatePassword(password)) {
       Swal.fire({
-        position: "center",
         icon: "error",
         title: "Invalid Password!",
-        text: "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.",
-        showConfirmButton: true,
+        text:
+          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.",
       });
       return;
     }
 
     try {
-      // User Sign Up
       const result = await createUser(email, password);
-      console.log(result.user);
-
-      // Update User Profile
       await updateUserProfile(name, photoURL);
 
-      // Fetch JWT Token
-      const { data } = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/jwt`,
-        {
-          email: result?.user?.email,
-        },
+        { email: result?.user?.email },
         { withCredentials: true },
       );
-      console.log(data);
 
-      // Show Toast
       toast.success("Sign Up successful!");
-
-      // Navigate To The Intended Route After Successful Sign-Up
       navigate("/", { replace: true });
     } catch (error) {
-      console.log(error);
       Swal.fire({
-        position: "center",
         icon: "error",
         title: "Sign Up failed!",
         text: error.message,
-        showConfirmButton: true,
       });
     }
   };
@@ -76,129 +68,111 @@ const SignUp = () => {
       <Helmet>
         <title>Job Wave | Sign Up</title>
       </Helmet>
-      <div className="flex justify-center items-center min-h-[calc(100vh-286px)] my-4 px-2 md:my-12">
-        <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-lg  lg:max-w-4xl ">
-          <div className="w-full px-6 py-6 md:px-8 lg:w-1/2">
-            <div className="flex justify-center items-center gap-1 mx-auto">
-              <img className="w-auto h-10 rounded-md" src={logo} alt="" />
-            </div>
 
-            <p className="mt-3 text-xl text-center text-gray-600">
-              Get Your Free Account Now!
-            </p>
-            <div>
-              <SocialLogin></SocialLogin>
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <span className="w-1/5 border-b  lg:w-1/4"></span>
-
-              <div className="text-xs text-center text-gray-700 uppercase  hover:underline">
-                or Registration with email
+      <LazyMotion features={domAnimation}>
+        <motion.div
+          initial={
+            shouldReduceMotion
+              ? false
+              : { opacity: 0, y: 30, scale: 0.97 }
+          }
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 90,
+            damping: 18,
+            mass: 0.8,
+          }}
+          style={{ willChange: "transform, opacity" }}
+          className="flex justify-center items-center min-h-[calc(100vh-286px)] my-4 px-2 md:my-12"
+        >
+          <motion.div
+            layout
+            className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-xl shadow-2xl lg:max-w-4xl"
+          >
+            {/* Left Form */}
+            <div className="w-full px-6 py-6 md:px-8 lg:w-1/2">
+              <div className="flex justify-center items-center gap-1 mx-auto">
+                <img className="h-10 rounded-md" src={logo} alt="Job Wave" />
               </div>
 
-              <span className="w-1/5 border-b dark:border-gray-200 lg:w-1/4"></span>
-            </div>
-            <form onSubmit={handleSignUp}>
-              <div className="mt-4">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 "
-                  htmlFor="name"
-                >
-                  User Name
-                </label>
-                <input
-                  id="name"
-                  autoComplete="name"
-                  name="name"
-                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  required
-                />
-              </div>
-              <div className="mt-4">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 "
-                  htmlFor="photo"
-                >
-                  Photo URL
-                </label>
-                <input
-                  id="photo"
-                  autoComplete="photo"
-                  name="photoURL"
-                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  required
-                />
-              </div>
-              <div className="mt-4">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600 "
-                  htmlFor="LoggingEmailAddress"
-                >
-                  Email Address
-                </label>
-                <input
-                  id="LoggingEmailAddress"
-                  autoComplete="email"
-                  name="email"
-                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                  type="email"
-                  required
-                />
+              <p className="mt-3 text-xl text-center text-gray-600">
+                Get Your Free Account Now!
+              </p>
+
+              <SocialLogin />
+
+              <div className="flex items-center justify-between mt-4">
+                <span className="w-1/5 border-b lg:w-1/4" />
+                <span className="text-xs text-gray-700 uppercase">
+                  or register with email
+                </span>
+                <span className="w-1/5 border-b lg:w-1/4" />
               </div>
 
-              <div className="mt-4">
-                <div className="flex justify-between">
-                  <label
-                    className="block mb-2 text-sm font-medium text-gray-600 "
-                    htmlFor="loggingPassword"
-                  >
-                    Password
-                  </label>
-                </div>
+              <form onSubmit={handleSignUp}>
+                {[
+                  { label: "User Name", name: "name", type: "text" },
+                  { label: "Photo URL", name: "photoURL", type: "text" },
+                  { label: "Email Address", name: "email", type: "email" },
+                  { label: "Password", name: "password", type: "password" },
+                ].map((field) => (
+                  <div key={field.name} className="mt-4">
+                    <label className="block mb-2 text-sm font-medium text-gray-600">
+                      {field.label}
+                    </label>
+                    <input
+                      name={field.name}
+                      type={field.type}
+                      required
+                      autoComplete={field.name}
+                      className="block w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                    />
+                  </div>
+                ))}
 
-                <input
-                  id="loggingPassword"
-                  autoComplete="current-password"
-                  name="password"
-                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                  type="password"
-                  required
-                />
-              </div>
-              <div className="mt-6">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                  }}
                   type="submit"
-                  className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+                  className="w-full mt-6 px-6 py-3 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700"
                 >
                   Sign Up
-                </button>
+                </motion.button>
+              </form>
+
+              <div className="flex items-center justify-between mt-4">
+                <span className="w-1/5 border-b md:w-1/4" />
+                <Link
+                  to="/sign-in"
+                  className="text-xs font-bold text-gray-600 uppercase hover:underline"
+                >
+                  or sign in
+                </Link>
+                <span className="w-1/5 border-b md:w-1/4" />
               </div>
-            </form>
-
-            <div className="flex items-center justify-between mt-4">
-              <span className="w-1/5 border-b  md:w-1/4"></span>
-
-              <Link
-                to="/sign-in"
-                className="text-xs font-bold text-gray-600 uppercase  hover:underline"
-              >
-                or sign in
-              </Link>
-
-              <span className="w-1/5 border-b  md:w-1/4"></span>
             </div>
-          </div>
-          <div
-            className="hidden bg-cover bg-center lg:block lg:w-1/2"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')`,
-            }}
-          ></div>
-        </div>
-      </div>
+
+            {/* Right Image */}
+            <motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="hidden bg-cover bg-center lg:block lg:w-1/2"
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?auto=format&fit=crop&w=1575&q=80')",
+                willChange: "opacity",
+              }}
+            />
+          </motion.div>
+        </motion.div>
+      </LazyMotion>
     </>
   );
 };
