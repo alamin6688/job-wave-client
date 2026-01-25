@@ -1,12 +1,14 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobCards from "./JobCards";
+import JobCardSkeleton from "./JobCardSkeleton";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
 const TabCategories = () => {
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   axios
@@ -22,10 +24,13 @@ const TabCategories = () => {
   useEffect(() => {
     const getData = async () => {
       try {
+        setLoading(true);
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/jobs`);
         setJobs(data);
       } catch (error) {
         console.log("Error in fetching!", error);
+      } finally {
+        setLoading(false);
       }
     };
     getData();
@@ -78,9 +83,13 @@ const TabCategories = () => {
             transition={{ staggerChildren: 0.12 }}
             className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {filterJobsByCategory("Web Development").map((job) => (
-              <JobCards key={job._id} job={job} />
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <JobCardSkeleton key={i} />
+                ))
+              : filterJobsByCategory("Web Development").map((job) => (
+                  <JobCards key={job._id} job={job} />
+                ))}
           </motion.div>
         </TabPanel>
 
@@ -92,9 +101,13 @@ const TabCategories = () => {
             transition={{ staggerChildren: 0.12 }}
             className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {filterJobsByCategory("Graphics Design").map((job) => (
-              <JobCards key={job._id} job={job} />
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <JobCardSkeleton key={i} />
+                ))
+              : filterJobsByCategory("Graphics Design").map((job) => (
+                  <JobCards key={job._id} job={job} />
+                ))}
           </motion.div>
         </TabPanel>
 
@@ -106,9 +119,13 @@ const TabCategories = () => {
             transition={{ staggerChildren: 0.12 }}
             className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {filterJobsByCategory("Digital Marketing").map((job) => (
-              <JobCards key={job._id} job={job} />
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <JobCardSkeleton key={i} />
+                ))
+              : filterJobsByCategory("Digital Marketing").map((job) => (
+                  <JobCards key={job._id} job={job} />
+                ))}
           </motion.div>
         </TabPanel>
 
@@ -120,9 +137,13 @@ const TabCategories = () => {
             transition={{ staggerChildren: 0.12 }}
             className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {filterJobsByCategory("Data Analyst").map((job) => (
-              <JobCards key={job._id} job={job} />
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <JobCardSkeleton key={i} />
+                ))
+              : filterJobsByCategory("Data Analyst").map((job) => (
+                  <JobCards key={job._id} job={job} />
+                ))}
           </motion.div>
         </TabPanel>
 
@@ -134,9 +155,13 @@ const TabCategories = () => {
             transition={{ staggerChildren: 0.12 }}
             className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {filterJobsByCategory("Content Writer").map((job) => (
-              <JobCards key={job._id} job={job} />
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <JobCardSkeleton key={i} />
+                ))
+              : filterJobsByCategory("Content Writer").map((job) => (
+                  <JobCards key={job._id} job={job} />
+                ))}
           </motion.div>
         </TabPanel>
 
@@ -148,9 +173,13 @@ const TabCategories = () => {
             transition={{ staggerChildren: 0.12 }}
             className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           >
-            {filterJobsByCategory("UI/UX Design").map((job) => (
-              <JobCards key={job._id} job={job} />
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <JobCardSkeleton key={i} />
+                ))
+              : filterJobsByCategory("UI/UX Design").map((job) => (
+                  <JobCards key={job._id} job={job} />
+                ))}
           </motion.div>
         </TabPanel>
       </Tabs>
